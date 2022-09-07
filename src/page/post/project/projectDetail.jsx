@@ -26,14 +26,30 @@ function ProjectDetail() {
     getProject();
   }, [params]);
   const postComment = async () => {
-     const dataComment = await CommentService.create({name : checkUser.isLogin ? checkUser.name : name, email : checkUser.isLogin ? checkUser.email : email, content : content, project_id : dataItem._id});
-     setDataItem((prev) => {
-      return {...prev,
-        comment : [...prev.comment, dataComment.data] }
-     });
-     setName('');
-     setContent('');
-     setEmail('');
+       if(checkUser.isLogin){
+          if( content !== ''){
+            const dataComment = await CommentService.create({name : checkUser.isLogin ? checkUser.name : name, email : checkUser.isLogin ? checkUser.email : email, content : content, project_id : dataItem._id});
+            setDataItem((prev) => {
+             return {...prev,
+               comment : [...prev.comment, dataComment.data] }
+            });
+            setName('');
+            setContent('');
+            setEmail('');
+          }
+       }else {
+         if(name !== '' && email !== '' && content !== ''){
+          const dataComment = await CommentService.create({name : checkUser.isLogin ? checkUser.name : name, email : checkUser.isLogin ? checkUser.email : email, content : content, project_id : dataItem._id});
+          setDataItem((prev) => {
+           return {...prev,
+             comment : [...prev.comment, dataComment.data] }
+          });
+          setName('');
+          setContent('');
+          setEmail('');
+         }
+       }
+   
   }
 
   return (

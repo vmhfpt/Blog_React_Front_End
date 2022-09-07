@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://real-estate-904.herokuapp.com',
   paramsSerializer: params => queryString.stringify(params),
   
 });
