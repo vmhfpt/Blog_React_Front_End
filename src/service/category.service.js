@@ -1,8 +1,14 @@
 import CategoryApi from "../api/category/categoryApi";
 class CategoryService {
-   async index(page){
-       return await CategoryApi.getList(page);
+   async index(){
+       return await CategoryApi.getList();
     }
+    async getPostByCategory(data){
+      return await CategoryApi.getPostByCategory(data);
+   }
+   async getPostByTag(data){
+      return await CategoryApi.getPostByTag(data);
+   }
    async getCity(){
      return await CategoryApi.getCity();
    }

@@ -1,57 +1,125 @@
 import { useSelector } from "react-redux";
-import { getLogin } from "../../user/selectLogin";
-import {Link } from "react-router-dom";
-import {logoutUser} from "../../user/authReducer";
+import {Link, useParams  } from "react-router-dom";
 import {useDispatch} from "react-redux";
+import { getList } from "../../category/categoryReducer";
+import {useEffect, useState} from "react";
+import { getListCategory } from "../../category/selectCategory";
+import postService from "../../../../service/post.service";
 function Header(){
-  const dispatch = useDispatch();
-   const checkUser = useSelector(getLogin);
-  const logOut = () => {
-    dispatch(logoutUser(checkUser.id));
-    localStorage.setItem('accessToken',null);
-    localStorage.setItem('refreshToken',null);
+    const [key, setKey] = useState('');
+    const [dataAutoComplete, setDataAutoComplete] = useState([]);
+    function scrollFunction() {
+      
+        window.onwheel = e => {
+    if(e.deltaY >= 0){
+      
+      document.getElementById("navbar").style.top = "-63px";
+    } else {
+      document.getElementById("navbar").style.top = "0";
+    }
   }
-    return (<div>
-
-
-
-    <Link className="scrollToTop" to="#"><i className="fa fa-angle-double-up"></i></Link>
+      }
+  let params = useParams();
+  const [tabSearch, setTabSearch] = useState(false);
+  const dispatch = useDispatch();
+   useEffect(() => {
+    window.onscroll = function() {scrollFunction()};
+     dispatch(getList());
+     
+   }, [])
+   useEffect(() => {
+    setTabSearch(false);
+}, [params.slug]);
+   const response = useSelector(getListCategory);
+    const showNav = () => {
+        var element = document.getElementById("animate-scroll__nav");
+        element.classList.add("animate-scroll__nav");
+        document.getElementById("over-flow").style.display = "block";
+    }
+    const closeNav = () => {
+        var element = document.getElementById("animate-scroll__nav");
+        element.classList.remove("animate-scroll__nav");
+        document.getElementById("over-flow").style.display = "none";
+    }
+   /**document.getElementById("show-nav").addEventListener("click", ()=> {
+        
+      });
   
-  <header id="aa-header">  
+      document.getElementById("close-nav").addEventListener("click", ()=> {
+         
+      });
+      document.getElementById("over-flow").addEventListener("click", ()=> {
+          var element = document.getElementById("animate-scroll__nav");
+         element.classList.remove("animate-scroll__nav");
+         document.getElementById("over-flow").style.display = "none";
+        
+      }); */
+    const getDataSearch = async (data) => {
+        setKey(data);
+      const resultAutoComplete = await postService.getSearchAutoComplete({key : data});
+      setDataAutoComplete(resultAutoComplete);
+     
+    }
+    return (
+    <>
+      <div onClick={() => closeNav()} id="over-flow"></div>
+    <header id="navbar" className="app-footer container-fluid">
     <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="aa-header-area">
-            <div className="row">
-              <div className="col-md-6 col-sm-6 col-xs-6">
-                <div className="aa-header-left">
-                  <div className="aa-telephone-no">
-                    <span className="fa fa-phone"></span>
-                    0359932904
-                  </div>
-                  <div className="aa-email hidden-xs">
-                    <span className="fa fa-envelope-o"></span> bankhonghieutoi@gmail.com
-                  </div>
-                </div>              
-              </div>
-              <div className="col-md-6 col-sm-6 col-xs-6">
-                {checkUser.isLogin ? <div className="aa-header-right">
-                  <Link to="#" className="aa-register">{checkUser.name}</Link>
-                  <Link to="/property/add" className="aa-register">Quản lý bài đăng</Link>
-                  <Link to="#" onClick={() => logOut()}className="aa-login">Đăng xuất</Link>
-                </div> : <div className="aa-header-right">
-                  <Link to="/register" className="aa-register">Đăng ký</Link>
-                  <Link to="/login" className="aa-login">Đăng nhập</Link>
-                </div>}
-               
-              </div>
+        <div className="app-footer__content ">
+            <div onClick={() => showNav()} className="app-footer__content-nav-icon">
+               <i className="fa fa-bars" aria-hidden="true"></i>
             </div>
-          </div>
+            <div className="app-footer__content-logo ">
+               <Link to=""><h1>VMHUNG</h1></Link>
+            </div>
+            <div id="animate-scroll__nav" className="app-footer__content-nav  ">
+               <div className="app-footer__content-nav-tab">
+                   <div className="app-footer__content-nav-tab-item">
+                       <Link to=""> <span>MAGIFY</span></Link>
+                   </div>
+                   <div className="app-footer__content-nav-tab-item">
+                       <i onClick={() => closeNav()} className="fa fa-times" aria-hidden="true"></i>
+                   </div>
+               </div>
+               <ul>
+                   <Link onClick={() => closeNav()} to=""><li>Trang chủ</li></Link>
+                   {response && response.map((item, key) => (
+                        <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li>{item.title}</li></Link>
+                   ))}
+                   
+               </ul>
+           </div>
+           <div  className="app-footer__content-search ">
+               <i onClick={() => setTabSearch(true)} className="fa fa-search" aria-hidden="true"></i>
+               
+             {tabSearch && <>
+                <div className="app-footer__content-search-detail">
+                     <div className="app-footer__content-search-detail-input">
+                         <input value={key} onChange={(e) => getDataSearch(e.target.value)} type="text" placeholder="Tìm kiếm"/>
+                     </div>
+                     <div className="app-footer__content-search-detail-button">
+                      <Link to={"/post/search?key=" + key} >  <i className="fa fa-search" aria-hidden="true"></i></Link>
+                     </div>
+                </div>
+                <div className="app-footer__content-search-auto_complete">
+                <ul>
+                    {key !== '' && dataAutoComplete.length !== 0 ? 
+                    
+                    dataAutoComplete.map((item, key) => (
+                        <Link key={key} to={'/post/' + item.slug}><li>{item.title}</li></Link>
+                    ))
+                    
+                    : <li>Không có kết quả</li>}
+                  
+                   <li className="close-tab-search" onClick={() => setTabSearch(false)}>Đóng lại</li>
+                </ul>
+           </div>
+             </>}
+
+
+           </div>
         </div>
-      </div>
     </div>
   </header>
-
-
-    </div>)}
+    </>)}
 export default Header;

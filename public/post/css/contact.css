@@ -1,0 +1,86 @@
+.app-contact {
+  margin-top : 60px;
+  padding : 40px 0px;
+}
+
+.app-contact {
+    background-image: url('https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865392.jpg');
+  height : 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+.app-contact__left {
+    color : white !important;
+}
+.app-contact__left-title-top span {
+    color : orangered ;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 15px;
+}
+.app-contact__left-title {
+    font-size: 40px;
+    font-weight: 700;
+}
+.app-contact__left-detail span {
+    font-size: 15px;
+}
+.app-contact__left-list li {
+    display: block;
+    margin-bottom: 18px;
+}
+.app-contact__left-list li>i {
+    color : orangered ;
+    margin-right : 12px;
+    font-size: 17px;
+} 
+.app-contact__left-detail {
+    margin : 20px 0px;
+}
+.app-contact__right{
+    color : #fff;
+}
+.app-contact__form-title span {
+    font-size: 40px;
+    font-weight: 700;
+}
+.app-contact__form-title {
+    text-align: center;
+}
+.app-contact__form-content input {
+    font-size: 14px;
+    width : 100%;
+    padding : 15px 25px;
+    border : 1px solid #eeeeee;
+    margin : 8px 0px;
+}
+.app-contact__form-content input:focus {
+   outline: none;
+}
+.app-contact__form-content button {
+    margin-top: 9px;
+    cursor: pointer;
+    width : 100%;
+    padding : 19px 0px;
+    font-size: 15px;
+    background: orangered;
+    border: none;
+    color : #fff;
+}
+.app-contact__form-title {
+    background: orangered;
+    padding : 25px 37px;
+}
+.app-contact__form-content {
+    padding : 40px 44px;
+    background: #fff;
+}
+.app-contact__left {
+    display: flex;
+    flex-direction: column;
+   
+    height : 100%;
+    justify-content: center;
+}

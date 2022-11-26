@@ -1,0 +1,214 @@
+.app-block-detail {
+    background: white;
+    box-shadow: 0px 0px 2px rgb(181 181 181);
+    padding: 20px;
+}
+.app-block-detail__breadcrumb li{
+  display: inline-block;
+  color : #aaaaaa;
+  font-size: 14px;
+}
+.app-block-detail__breadcrumb i {
+    color : #aaaaaa;
+  font-size: 14px;
+}
+.app-block-detail__breadcrumb-active {
+    color : orangered !important;
+}
+.app-block-detail__title span {
+    font-size: 39px;
+    font-weight: 700;
+}
+.app-block-detail__title {
+    margin : 15px 0px;
+    line-height: 38px;
+}
+.app-block-detail__author li {
+    display: inline-block;
+    margin-right : 5px;
+    color : #aaaaaa;
+  font-size: 14px;
+}
+.app-block-detail__share-icon {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+}
+
+.app-block-detail__share-icon-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.app-block-detail__share-icon-share {
+    border : 1px solid rgba(0,0,0,.1);
+    position: relative;
+    padding : 3px 9px 3px 9px;
+    margin-right : 10px;
+    margin-bottom: 10px;
+}
+
+.app-block-detail__share-icon-share .fa:after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+  
+    top: 13px;
+    right: -4px;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,.1);
+    border-left-color: rgba(0,0,0,0);
+    border-bottom-color: rgba(0,0,0,0);
+    transform: rotate(45deg);
+}
+.app-block-detail__share-icon-facebook {
+    flex : 0 0 130px;
+    margin-right : 10px;
+    margin-bottom: 10px;
+    height :100%;
+}
+.app-block-detail__share-icon-twitter {
+    flex : 0 0 100px;
+    height :100%;
+    margin-right : 10px;
+    margin-bottom: 10px;
+}
+.app-block-detail__share-icon-pinterest {
+    border : 1px solid rgba(0,0,0,.1);
+    position: relative;
+    padding : 3px 9px 2px 9px;
+    background-color: #ca2127;
+    color : #fff;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-right : 10px;
+}
+.app-block-detail__share-icon-message {
+    border : 1px solid rgba(0,0,0,.1);
+    position: relative;
+    padding : 3px 8px 2px 8px;
+    background-color: #888;
+    color : #fff;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-right : 10px;
+}
+.app-block-detail__share-icon-add {
+    border : 1px solid rgba(0,0,0,.1);
+    position: relative;
+    padding : 3px 9px 2px 9px;
+    background-color: rgba(155,155,155,0.1);
+    color: #aaaaaa;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+.tags-active {
+    background: #333 !important;
+    color : #fff !important;
+}
+.app-block-detail__share-icon {
+    margin : 20px 0px;
+    padding : 19px 0px 10px 0px;
+    border-bottom : 1px solid rgb(237, 235, 235);
+    border-top : 1px solid rgb(237, 235, 235);
+}
+.app-block-detail__share-icon-bottom {
+    margin : 20px 0px;
+    padding : 19px 0px 10px 0px;
+    border-bottom : 1px solid rgb(237, 235, 235);
+    border-top : 1px solid rgb(237, 235, 235);
+}
+.app-block-detail__comment {
+    background: white;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 0px 0px 2px rgb(181 181 181);
+    margin: 20px 0px 20px 0px;
+}
+.app-block-detail__comment-service i {
+    font-size: 14.3px;
+    color : #aaaaaa;
+}
+.app-block-detail__comment-service {
+    padding : 18px 0px;
+    border-bottom : 1px solid rgb(237, 235, 235);
+}
+.app-block-detail__comment-list {
+    display: flex;
+    flex-direction: column;
+}
+.app-block-detail__comment-list-item-image img {
+    width : 100%;
+}
+.app-block-detail__comment-list-item-image {
+    flex : 0 0 38px;
+}
+.app-block-detail__comment-list-item {
+    display: flex;
+}
+.app-block-detail__comment-list-item-content {
+    width : 100%;
+}
+.app-block-detail__comment-list-item-content {
+   padding : 0px 18px 0px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.app-block-detail__comment-list-item-content-title span {
+    font-size: 19px;
+    font-weight: 700;
+}
+.app-block-detail__comment-list-item-content-title p{
+    font-size: 14.3px;
+    color : #aaaaaa;
+}
+.app-block-detail__comment-list-item-content-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.app-block-detail__comment-list-item-content-description {
+    font-size: 15px;
+    color : #888;
+
+}
+.app-block-detail__comment-list-item-content-reply button {
+    border: 1px solid #aaaaaa;
+    color : #888;
+    font-size: 11.4px;
+    padding : 3px 6px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.app-block-detail__comment-list-item-content-description {
+    margin : 12px 0px;
+}
+.app-block-detail__comment-list-item {
+    padding : 25px 0px 25px 0px;
+    border-bottom : 1px solid rgb(237, 235, 235);
+}
+
+.app-post-tag__grid {
+    margin-top : 20px;
+    row-gap: 40px;
+    column-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.app-post-tag__grid_item-image img {
+    width : 100%;
+    object-fit: cover;
+}
+.app-post-tag__grid_item-content-title span {
+    font-size: 23px;
+    font-weight: 700;
+}
+.app-post-tag__grid_item-content-description p {
+    font-size: 16px;
+}
+.app-post-tag__grid_item-content-author {
+    margin : 8px 0px;
+}

@@ -26,7 +26,7 @@ function PropertySearch() {
         setPaginate(response.paginate);
      }
    }
-   getProperty();
+   getProperty(); 
   }, [query, paramUrl.get("ca"), paramUrl.get("key"), paramUrl.get("city")]);
   
 
