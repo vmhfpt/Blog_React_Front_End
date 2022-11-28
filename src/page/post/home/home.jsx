@@ -194,7 +194,7 @@ function Home(){
 
 
                       <div className="app-block-center__third-content-show-more">
-                           <button>Xem thêm</button>
+                          <Link to="/post/search?key="><button>Xem thêm</button></Link> 
                       </div>
                    </div>
 

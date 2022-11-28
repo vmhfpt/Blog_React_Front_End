@@ -1,7 +1,7 @@
 import axios from 'axios';
 import queryString from 'query-string';
 const axiosClient = axios.create({
-  baseURL: 'https://blog.diaocconsole.tk',
+  baseURL: 'http://localhost:8080',
   paramsSerializer: params => queryString.stringify(params),
   
 });

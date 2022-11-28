@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNav } from "../homeReducer";
 import { useEffect } from "react";
 import {getDataNav} from "../selectHome";
+import { getDataComment } from "../../post/selectPost";
 function Nav(){ 
+   
+    const comment = useSelector(getDataComment);
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getNav())
-    }, []);
-    const response = useSelector(getDataNav)
+      dispatch(getNav());
+    }, [comment]);
+    const response = useSelector(getDataNav);
     
     const postSuggest = response.postSuggest;
     const commentSuggest = response.commentSuggest;
@@ -24,6 +27,7 @@ function Nav(){
           
          </div>
          <div className="app-block-center__content-category-follow-grid">
+             
               <div className="app-block-center__content-category-follow-grid-item bg-fb">
                   <div className="background-socialite__icon">
                       <i className="fa fa-facebook" aria-hidden="true"></i>
@@ -32,6 +36,7 @@ function Nav(){
                       1.5k
                   </div>
               </div>
+             
               <div className="app-block-center__content-category-follow-grid-item bg-tw">
                   <div className="background-socialite__icon">
                       <i className="fa fa-twitter" aria-hidden="true"></i>

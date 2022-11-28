@@ -3,7 +3,7 @@ import { useState } from "react";
 import { login } from "./authReducer";
 import { logout } from "./authReducer";
 import {useDispatch} from "react-redux";
-import {getLogin} from "./selectLogin";
+
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../../service/auth.service";
 function Login() {

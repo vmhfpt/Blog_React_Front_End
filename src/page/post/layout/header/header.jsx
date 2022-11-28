@@ -5,10 +5,14 @@ import { getList } from "../../category/categoryReducer";
 import {useEffect, useState} from "react";
 import { getListCategory } from "../../category/selectCategory";
 import postService from "../../../../service/post.service";
+import { useLocation } from "react-router-dom";
+
 function Header(){
+  
+  const { pathname } = useLocation();
     const [key, setKey] = useState('');
     const [dataAutoComplete, setDataAutoComplete] = useState([]);
-    function scrollFunction() {
+    function scrollFunction(e) {
       
         window.onwheel = e => {
     if(e.deltaY >= 0){
@@ -29,7 +33,7 @@ function Header(){
    }, [])
    useEffect(() => {
     setTabSearch(false);
-}, [params.slug]);
+}, [params, pathname]);
    const response = useSelector(getListCategory);
     const showNav = () => {
         var element = document.getElementById("animate-scroll__nav");

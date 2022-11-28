@@ -7,6 +7,9 @@
     font-weight: 600;
     
 }
+iframe {
+    width : 100%;
+}
 .fa-search {
     cursor: pointer;
 }

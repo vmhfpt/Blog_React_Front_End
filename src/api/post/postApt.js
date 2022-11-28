@@ -12,6 +12,10 @@ const PostApt = {
     getPostSearch : (data) => {
       const url = '/post-by-search';
         return axiosClient.post(url, data);
+    },
+    postComment : (data) => {
+      const url = '/post-comment';
+      return axiosClient.post(url, data);
     }
    
   }

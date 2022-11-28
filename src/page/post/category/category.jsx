@@ -78,16 +78,9 @@ function Category() {
                             page : response.paginate.next_page
                           }
                         })
-                      }}>Xem thêm {response.paginate.more_item} bài viết</button>}
-                      
+                      }}>Xem thêm {response.paginate.more_item} bài viết</button>}   
                  </div>
               </div>
-
-             
-
-            
-               
-             
            </div>
             <Nav />
         </div>

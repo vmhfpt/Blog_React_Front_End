@@ -5,16 +5,20 @@ import Nav from "../home/components/nav";
 function About(){
     let params = useParams();
     const [dataItem, setDataItem] = useState(false);
+    const [postSuggest, setPostSuggest] = useState(false);
      useEffect(() => {
         const getData = async () => {
             const response = await footerService.getDetail({slug : params.slug});
             if(response){
-                setDataItem(response);
+                setDataItem(response.result);
+                setPostSuggest(response.post_suggest);
             }
         }
         getData();
     }, [params]);
+   // console.log(dataItem)
    return(<>
+  
      {dataItem && <section className="app-block-center app-category container-fluid">
    <div className="container">
       <div className="app-block-center_content">
@@ -129,49 +133,31 @@ function About(){
              <div className="app-block-center__second-content">
               <div className="app-tab__title green-tab">
                   <div className="app-tab__title-left">
-                     <Link to=""><span>Technology</span></Link>
+                     <Link to=""><span>Bài viết gợi ý</span></Link>
                   </div>
                   <div className="app-tab__title-right">
-                     <Link to=""><span>Show more</span></Link>
+                     <Link to=""><span>Xem thêm</span></Link>
                </div>
               </div>
               <div className="app-block-center__second-content-tab">
 
             
               <div className="row">
-                 <div className="col-sm-4">
+                {postSuggest && postSuggest.map((item, key) => (
+                     <div key={key} className="col-sm-4">
                      <div className="app-block-center__second-content-item">
                          <div className="app-block-center__second-content-item-image">
-                            <img src="https://2.bp.blogspot.com/-bbSZgFsgxCY/WwYoE1KWj-I/AAAAAAAAANU/ftMWR-D25iA2AaTZZfqQ-ykWTd9xpo0yQCK4BGAYYCw/w215-h144-p-k-no-nu/pexels-photo-336232.jpeg" alt="" />
+                            <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
                          </div>
                          <div className="app-block-center__second-content-item-content">
-                            <Link to=""> <span>Chỗ này để nội dung bài viết ở đây example</span></Link>
-                            <Link to=""><i className="fa fa-clock-o" aria-hidden="true"></i> <span className="author">May 23, 2018</span></Link>
+                            <Link to={"/post/"+ item.slug}> <span>{item.title}</span></Link>
+                            <Link to={"/post/"+ item.slug}><i className="fa fa-clock-o" aria-hidden="true"></i> <span className="author">{item.createdAt.slice(0, 10)}</span></Link>
                          </div>
                      </div>
                  </div>
-                 <div className="col-sm-4">
-                    <div className="app-block-center__second-content-item">
-                        <div className="app-block-center__second-content-item-image">
-                           <img src="https://2.bp.blogspot.com/-bbSZgFsgxCY/WwYoE1KWj-I/AAAAAAAAANU/ftMWR-D25iA2AaTZZfqQ-ykWTd9xpo0yQCK4BGAYYCw/w215-h144-p-k-no-nu/pexels-photo-336232.jpeg" alt="" />
-                        </div>
-                        <div className="app-block-center__second-content-item-content">
-                           <Link to=""> <span>Chỗ này để nội dung bài viết ở đây example</span></Link>
-                           <Link to=""><i className="fa fa-clock-o" aria-hidden="true"></i> <span className="author">May 23, 2018</span></Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-4">
-                    <div className="app-block-center__second-content-item">
-                        <div className="app-block-center__second-content-item-image">
-                           <img src="https://2.bp.blogspot.com/-bbSZgFsgxCY/WwYoE1KWj-I/AAAAAAAAANU/ftMWR-D25iA2AaTZZfqQ-ykWTd9xpo0yQCK4BGAYYCw/w215-h144-p-k-no-nu/pexels-photo-336232.jpeg" alt="" />
-                        </div>
-                        <div className="app-block-center__second-content-item-content">
-                           <Link to=""> <span>Chỗ này để nội dung bài viết ở đây example</span></Link>
-                           <Link to=""><i className="fa fa-clock-o" aria-hidden="true"></i> <span className="author">May 23, 2018</span></Link>
-                        </div>
-                    </div>
-                </div>
+                ))}
+                
+                 
               </div>
           </div>
              </div>

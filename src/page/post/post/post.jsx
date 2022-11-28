@@ -3,17 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDetail } from "./postReducer";
 import { getDataDetail } from "./selectPost";
+import { getDataComment } from "./selectPost";
 import Nav from "../home/components/nav";
-import {isEmpty} from "lodash"
+import PostComment from "./postComment";
+import {isEmpty} from "lodash";
+
+
+import {
+    
+    FacebookShareButton,
+   
+    PinterestShareButton,
+  
+    TelegramShareButton,
+   
+    TwitterShareButton,
+    
+  } from "react-share";
 function Post() {
+    
     const dispatch = useDispatch();
     let params = useParams();
     useEffect(() => {
         dispatch(getDetail({ slug: params.slug }))
     }, [params.slug]);
     const response = useSelector(getDataDetail);
-   
-    
+    const comments = useSelector(getDataComment);
     return (<>
         {!isEmpty(response) && <section className="app-block-center app-category container-fluid">
             <div className="container">
@@ -36,7 +51,7 @@ function Post() {
                                 <ul>
                                     <li><i className="fa fa-user-o" aria-hidden="true"></i> {response.result.User.name}</li>
                                     <li><i className="fa fa-clock-o" aria-hidden="true"></i> {response.result.createdAt.slice(0, 10)}</li>
-                                    <Link to=""><li><i className="fa fa-comments-o" aria-hidden="true"></i> {response.result.Post_comments.length} Bình luận</li></Link>
+                                    <Link to=""><li><i className="fa fa-comments-o" aria-hidden="true"></i> {comments .length} Bình luận</li></Link>
                                 </ul>
                             </div>
 
@@ -50,9 +65,12 @@ function Post() {
                                         <div className="background-socialite__icon">
                                             <i className="fa fa-facebook" aria-hidden="true"></i>
                                         </div>
+                                        
+                                        <FacebookShareButton url={window.location.href}  className="share">
                                         <div className="total-socialite__icon">
                                             Facebook
                                         </div>
+                                       </FacebookShareButton>
                                     </div>
                                 </div>
 
@@ -61,9 +79,16 @@ function Post() {
                                         <div className="background-socialite__icon">
                                             <i className="fa fa-twitter" aria-hidden="true"></i>
                                         </div>
+
+                                        <TwitterShareButton 
+                                         url={window.location.href}
+                                         title={response.result.title}
+                                        >
                                         <div className="total-socialite__icon">
                                             twitter
                                         </div>
+                                        </TwitterShareButton>
+                                      
 
 
 
@@ -71,12 +96,22 @@ function Post() {
                                     </div>
                                 </div>
 
+                                <PinterestShareButton url={window.location.href} media={window.location.href} description="">
                                 <div className="app-block-detail__share-icon-pinterest">
                                     <i className="fa fa-pinterest-p" aria-hidden="true"></i>
                                 </div>
-                                <div className="app-block-detail__share-icon-message">
-                                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                             </PinterestShareButton>
+                               
+
+                             <TelegramShareButton url={window.location.href}  title={response.result.title} >
+                             <div className="app-block-detail__share-icon-message">
+                             <i className="fa fa-telegram" aria-hidden="true"></i>
+
                                 </div>
+                            </TelegramShareButton>
+                             
+                              
+                              
                                 <div className="app-block-detail__share-icon-add">
                                     <i className="fa fa-plus" aria-hidden="true"></i>
                                 </div>
@@ -108,9 +143,12 @@ function Post() {
                                         <div className="background-socialite__icon">
                                             <i className="fa fa-facebook" aria-hidden="true"></i>
                                         </div>
+                                        
+                                        <FacebookShareButton url={window.location.href}  className="share">
                                         <div className="total-socialite__icon">
                                             Facebook
                                         </div>
+                                       </FacebookShareButton>
                                     </div>
                                 </div>
 
@@ -119,9 +157,16 @@ function Post() {
                                         <div className="background-socialite__icon">
                                             <i className="fa fa-twitter" aria-hidden="true"></i>
                                         </div>
+
+                                        <TwitterShareButton 
+                                         url={window.location.href}
+                                         title={response.result.title}
+                                        >
                                         <div className="total-socialite__icon">
                                             twitter
                                         </div>
+                                        </TwitterShareButton>
+                                      
 
 
 
@@ -129,12 +174,22 @@ function Post() {
                                     </div>
                                 </div>
 
+                                <PinterestShareButton url={window.location.href} media={window.location.href} description="">
                                 <div className="app-block-detail__share-icon-pinterest">
                                     <i className="fa fa-pinterest-p" aria-hidden="true"></i>
                                 </div>
-                                <div className="app-block-detail__share-icon-message">
-                                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                             </PinterestShareButton>
+                               
+
+                             <TelegramShareButton url={window.location.href}  title={response.result.title} >
+                             <div className="app-block-detail__share-icon-message">
+                             <i className="fa fa-telegram" aria-hidden="true"></i>
+
                                 </div>
+                            </TelegramShareButton>
+                             
+                              
+                              
                                 <div className="app-block-detail__share-icon-add">
                                     <i className="fa fa-plus" aria-hidden="true"></i>
                                 </div>
@@ -173,122 +228,8 @@ function Post() {
                             </div>
                         </div>
 
-                        <div id="cmt" className="app-block-detail__comment">
-                            <div className="app-tab__title tab-orange">
-                                <div className="app-tab__title-left">
-                                    <Link to=""><span>{response.result.Post_comments.length} Bình luận</span></Link>
-                                </div>
-
-                            </div>
-                            <div className="app-block-detail__comment-service">
-                                <i>To be published, comments must be reviewed by the administrator </i>
-                            </div>
-                            <div className="app-block-detail__comment-list">
-
-                                
-                            {response.result.Post_comments.length !== 0 ? 
-                            
-                            response.result.Post_comments.map((item, key) => (
-                                <div key={key} className="app-block-detail__comment-list-item">
-                                <div className="app-block-detail__comment-list-item-image">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/219/219986.png" alt="" />
-                                </div>
-                                <div className="app-block-detail__comment-list-item-content">
-    
-                                    <div>
-                                        <div className="app-block-detail__comment-list-item-content-title">
-                                            <Link to=""> <span>{item.name}</span></Link>
-                                            <p>{item.createdAt.slice(0, 10)}</p>
-                                        </div>
-                                        <div className="app-block-detail__comment-list-item-content-description">
-                                            <span>{item.content}</span>
-                                        </div>
-                                        <div className="app-block-detail__comment-list-item-content-reply">
-                                            <button>Trả lời</button>
-                                        </div>
-                                    </div>
-
-                                   {item.Post_comments.length !== 0 ?   <div className="child-comment-border">
-                                            <div className="app-block-detail__comment-list">
-                                             {item.Post_comments.map((item1, key1) => (
-                                                 <div key={key1} className="app-block-detail__comment-list-item">
-                                                 <div className="app-block-detail__comment-list-item-image">
-                                                     <img src="https://truesun.in/wp-content/uploads/2021/08/62681-flat-icons-face-computer-design-avatar-icon.png" alt="" />
-                                                 </div>
-                                                 <div className="app-block-detail__comment-list-item-content">
-
-                                                     <div className="app-block-detail__comment-list-item-content-title">
-                                                         <Link to=""> <span>{item1.name}</span></Link>
-                                                         <p>{item1.createdAt.slice(0, 10)}</p>
-                                                     </div>
-                                                     <div className="app-block-detail__comment-list-item-content-description">
-                                                         <span>{item1.content}</span>
-                                                     </div>
-                                                     
-
-
-
-                                                 </div>
-                                             </div>
-                                             ))}
-
-                                               
-                                               
-                                            </div>
-                                        </div> : ''}
-
-                                    </div>
-                                    </div>
-                            ))
-
-                              
-                           
-                            
-                            : ''}        
-                            </div>
-                        </div>
-
-                        <div className="app-block-post__comment">
-                            <div className="app-block-post__comment-title">
-                                <span>Gửi bình luận của bạn</span>
-                            </div>
-                            <div className="app-block-post__comment-form">
-                                <form method="POST" action="">
-                                    <div className="row">
-                                        <div className="col-lg-6 col-md-4 col-sm-12">
-                                            <div className="form-group ">
-                                                <label>Tên *</label>
-                                                <input type="text" placeholder="Nhập tên" />
-                                                <span>* Tên không được để trống</span>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6 col-md-4 col-sm-12">
-                                            <div className="form-group ">
-                                                <label>Email *</label>
-                                                <input type="email" placeholder="Nhập email" />
-                                                <span>* Email không được để trống</span>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-12 col-md-4 col-sm-12">
-                                            <div className="form-group ">
-                                                <label>Số điện thoại *</label>
-                                                <input type="number" placeholder="Nhập số điện thoại" />
-                                                <span>* Tên không được để trống</span>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-12 col-md-12 col-sm-12">
-                                            <div className="form-group">
-                                                <label>Nội dung *</label>
-                                                <textarea id="message" cols="30" rows="5" placeholder="Nhập nội dung"></textarea>
-                                                <span>* Nội dung không được để trống</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button className="submit-comment">Gửi</button>
-                                </form>
-                            </div>
-                        </div>
-
+                     
+                    <PostComment slug={response.result.id}/>
 
 
 

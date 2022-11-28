@@ -11,5 +11,9 @@ class PostService {
     async getPostSearch(data) {
         return await PostApi.getPostSearch(data);
     }
+    async postComment(data) {
+        return await PostApi.postComment(data);
+    }
+    
 }
 export default new PostService();
