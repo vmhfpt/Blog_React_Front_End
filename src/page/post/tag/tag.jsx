@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-
+import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { getPostByTag } from "../category/categoryReducer";
@@ -24,8 +24,9 @@ function Tag(){
   
   const response = useSelector(getListPostTag);
   
+   
     return (<>
-      {response.length !== 0 ? <section className="app-block-center app-category container-fluid">
+      {!isEmpty(response) ? <section className="app-block-center app-category container-fluid">
     <div className="container">
        <div className="app-block-center_content">
            <div className="app-block-center_content-post ">

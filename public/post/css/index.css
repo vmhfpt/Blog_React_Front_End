@@ -1,6 +1,9 @@
 .form-group {
     padding : 8px 0px;
 }
+.app-header__about-logo img {
+    width : 100%;
+}
 .close-tab-search {
     cursor: pointer;
     text-align: center;

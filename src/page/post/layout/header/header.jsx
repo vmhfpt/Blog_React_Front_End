@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import { getListCategory } from "../../category/selectCategory";
 import postService from "../../../../service/post.service";
 import { useLocation } from "react-router-dom";
-
+import Logo from './Logo/logo.png';
 function Header(){
   
   const { pathname } = useLocation();
@@ -62,7 +62,7 @@ function Header(){
         setKey(data);
       const resultAutoComplete = await postService.getSearchAutoComplete({key : data});
       setDataAutoComplete(resultAutoComplete);
-     
+     // <Link to="/"><h1>VMHUNG</h1></Link>
     }
     return (
     <>
@@ -74,7 +74,9 @@ function Header(){
                <i className="fa fa-bars" aria-hidden="true"></i>
             </div>
             <div className="app-footer__content-logo ">
-               <Link to=""><h1>VMHUNG</h1></Link>
+               <div>
+               <img src={Logo} alt="" />
+               </div>
             </div>
             <div id="animate-scroll__nav" className="app-footer__content-nav  ">
                <div className="app-footer__content-nav-tab">

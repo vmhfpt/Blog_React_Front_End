@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 import {  animateScroll as scroll } from 'react-scroll';
 import url from "./icon/200w.gif";
+import logo from "../header/Logo/logo.png";
 function Footer(){
     const [visible,  setVisible] = useState(false);
     const toTop = () => {
@@ -32,14 +33,16 @@ function Footer(){
              <div className="row">
                  <div className="col-lg-2 col-sm-12 col-md-3 ">
                      <div className="app-header__about-logo">
-                         <Link to=""><span>VMHUNG</span></Link>
-                       
+                         
+                        <div>
+                            <img src={logo} alt="" />
+                        </div>
                      </div>
                  </div>
                  <div className="col-lg-7 col-sm-12 col-md-5 ">
                       <div className="app-header__about-content">
                           <span className="footer-title">Giới thiệu</span>
-                          <p>Trang blog tâm sự chia sẻ thử thuật liên quan đến lập trình, chịu trách nhiệm nội dung bài viết, bản quyền thuộc về tác giả console.log()</p>
+                          <p>Trang blog tâm sự chia sẻ thử thuật liên quan đến lập trình, chịu trách nhiệm nội dung bài viết, bản quyền thuộc về tác giả console.log(), "website này kéo thả bằng <a href="https://wordpress.com/">wordpress</a> thôi !!!" </p>
                       </div>
                  </div>
                  <div className="col-lg-3 col-sm-12 col-md-4 ">
@@ -84,6 +87,6 @@ function Footer(){
             </div>
         </div>
     </div>
-</footer>)
+</footer>);
 }
 export default Footer;

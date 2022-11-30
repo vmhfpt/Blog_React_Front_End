@@ -4,6 +4,13 @@
     padding: 20px;
 }
 
+.app-footer__content-logo {
+    text-align: center;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+    
+}
 .back-to-top {
     cursor: pointer;
     position: fixed;

@@ -1,11 +1,18 @@
 
 
 @media only screen and (max-width: 600px) {
+    .app-header__about-logo img {
+        width : 45%;
+    }
     .app-post-tag__grid {
         
         grid-template-columns: repeat(1, 1fr) !important;
     }
-
+    .app-footer__content-logo img {
+        width : 60%;
+    
+    }
+    
    .chat-now {
     display: block;
    }
@@ -95,6 +102,8 @@
 
 
     .app-header__about-logo {
+        text-align: center;
+      
         display: flex;
         justify-content: center;
         align-items: center;
@@ -144,6 +153,20 @@
     .chat-now {
         display: block;
        }
+       .app-footer__content-logo img {
+        width : 35%;
+    
+    }
+    .app-header__about-logo img {
+        width : 250px;
+    }
+    .app-header__about-logo {
+        text-align: center;
+      
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .app-contact__left {
         margin-bottom: 40px;
     }
@@ -279,6 +302,29 @@
     .chat-now {
         display: none;
        }
+       .app-header__about-logo img {
+        width : 100%;
+    }
+    .app-header__about-logo {
+        
+      
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+       .app-footer__content-logo img {
+        width : 100%;
+        position: relative;
+        top : 3px;
+       }
+       .app-footer__content-logo {
+        padding-right: 20px;
+
+       
+       }
+
+
+
     .app-contact__left {
         margin-bottom: 0px;
     }
