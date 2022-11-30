@@ -51,7 +51,7 @@ function Post() {
                                 <ul>
                                     <li><i className="fa fa-user-o" aria-hidden="true"></i> {response.result.User.name}</li>
                                     <li><i className="fa fa-clock-o" aria-hidden="true"></i> {response.result.createdAt.slice(0, 10)}</li>
-                                    <Link to=""><li><i className="fa fa-comments-o" aria-hidden="true"></i> {comments .length} Bình luận</li></Link>
+                                    <Link to=""><li><i className="fa fa-comments-o" aria-hidden="true"></i> {comments.length} Bình luận</li></Link>
                                 </ul>
                             </div>
 
