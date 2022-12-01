@@ -29,6 +29,7 @@ function Post() {
     }, [params.slug]);
     const response = useSelector(getDataDetail);
     const comments = useSelector(getDataComment);
+    console.log(comments)
     return (<>
         {!isEmpty(response) && <section className="app-block-center app-category container-fluid">
             <div className="container">
@@ -213,7 +214,7 @@ function Post() {
                                         <div key={key} className="col-sm-4">
                                             <div className="app-block-center__second-content-item">
                                                 <div className="app-block-center__second-content-item-image">
-                                                    <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                                                    <img src={ item.Post.thumb} alt="" />
                                                 </div>
                                                 <div className="app-block-center__second-content-item-content">
                                                     <Link to={"/post/" + item.Post.slug}> <span>{item.Post.title}</span></Link>

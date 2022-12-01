@@ -147,7 +147,7 @@ function About(){
                      <div key={key} className="col-sm-4">
                      <div className="app-block-center__second-content-item">
                          <div className="app-block-center__second-content-item-image">
-                            <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                            <img src={ item.thumb} alt="" />
                          </div>
                          <div className="app-block-center__second-content-item-content">
                             <Link to={"/post/"+ item.slug}> <span>{item.title}</span></Link>

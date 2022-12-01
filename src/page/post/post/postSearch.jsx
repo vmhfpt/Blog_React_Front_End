@@ -57,7 +57,7 @@ function PostSearch() {
               {response.result && response.result.map((item, key) => (
                   <div key={key} className="app-post-tag__grid_item">
                   <div className="app-post-tag__grid_item-image">
-                      <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                      <img src={ item.thumb} alt="" />
                   </div>
                   <div className="app-post-tag__grid_item-content">
                        <div className="app-post-tag__grid_item-content-title">

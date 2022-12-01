@@ -54,7 +54,7 @@ function Category() {
                    
                  <div key={key} className="app-block-center__third-content-item">
                  <div className="app-block-center__third-content-item-image">
-                     <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                     <img src={ item.Post.thumb} alt="" />
                  </div>
                  <div className="app-block-center__third-content-item-detail">
                      <div className="app-block-center__third-content-item-detail-title">

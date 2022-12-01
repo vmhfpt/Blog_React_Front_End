@@ -28,7 +28,7 @@ function Home(){
               {dataRowFirst && dataRowFirst.map((item, key) => (
                 <div key={key} className="app-block-top_grid-item">
                 <div className="app-block-top_grid-item-image">
-                    <img src={"https://blogapi.x10.mx/" + item.Post_categories[0].Post.thumb} alt="" />
+                    <img src={ item.Post_categories[0].Post.thumb} alt="" />
                     <div className="app-block-top_grid-item-image-tag">
                         {item.title}
                     </div>
@@ -70,7 +70,7 @@ function Home(){
                           <div className="col-sm-6 ">
                             <div className="app-block-center_content-post-flex-item ">
                                 <div className="app-block-center_content-post-flex-item-image">
-                                    <img src={"https://blogapi.x10.mx/" + dataRowSecond.Post_categories[0].Post.thumb} alt="" />
+                                    <img src={ dataRowSecond.Post_categories[0].Post.thumb} alt="" />
 
                                    
                                     <div className="app-block-top_grid-item-image-gradient"></div>
@@ -102,7 +102,7 @@ function Home(){
                                     }else {
                                         return( <div key={key} className="app-block-center_content-post-flex-news-item">
                                         <div className="app-block-center_content-post-flex-news-item-image">
-                                            <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                                            <img src={ item.Post.thumb} alt="" />
                                         </div>
                                         <div className="app-block-center_content-post-flex-news-item-content">
                                              <div className="app-block-center_content-post-flex-news-item-title">
@@ -143,7 +143,7 @@ function Home(){
                              <div key={key} className="col-sm-4">
                              <div className="app-block-center__second-content-item">
                                  <div className="app-block-center__second-content-item-image">
-                                    <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                                    <img src={ item.thumb} alt="" />
                                  </div>
                                  <div className="app-block-center__second-content-item-content">
                                     <Link to={"/post/" + item.slug}> <span>{item.title}</span></Link>
@@ -169,7 +169,7 @@ function Home(){
                     {dataRowThird.Post_categories && dataRowThird.Post_categories.map((item, key) => (
                          <div key={key} className="app-block-center__third-content-item">
                          <div className="app-block-center__third-content-item-image">
-                             <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                             <img src={ item.Post.thumb} alt="" />
                          </div>
                          <div className="app-block-center__third-content-item-detail">
                              <div className="app-block-center__third-content-item-detail-title">
@@ -215,7 +215,7 @@ function Home(){
                           <div key={key} className="col-sm-4">
                           <div className="app-block-center__second-content-item">
                               <div className="app-block-center__second-content-item-image">
-                                 <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                                 <img src={ item.thumb} alt="" />
                               </div>
                               <div className="app-block-center__second-content-item-content">
                                  <Link to={"/post/" + item.slug}> <span>{item.title}</span></Link>
@@ -245,7 +245,7 @@ function Home(){
                                      </div>
                                     </div>
                                     <div className="app-block-center__last-content-item-top">
-                                        <img src={"https://blogapi.x10.mx/" + dataRowFour.Post_categories[0].Post.thumb} alt="" />
+                                        <img src={ dataRowFour.Post_categories[0].Post.thumb} alt="" />
                                         <div className="app-block-top_grid-item-image-gradient"></div>
                                         <div className="app-block-top_grid-item-image-tag-content">
                                             <div className="app-block-top_grid-item-image-tag-content-title "><Link to={"/post/" + dataRowFour.Post_categories[0].Post.slug}>
@@ -262,7 +262,7 @@ function Home(){
                                         }else {
                                             return(  <div key={key} className="app-block-center__last-content-item-list-flex">
                                             <div className="app-block-center__last-content-item-list-flex-image">
-                                                <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                                                <img src={ item.Post.thumb} alt="" />
                                             </div>
                                             <div className="app-block-center__last-content-item-list-flex-detail">
                                                 <Link to={"/post/" + item.Post.slug}><span>{item.Post.title}
@@ -288,7 +288,7 @@ function Home(){
                                      </div>
                                     </div>
                                     <div className="app-block-center__last-content-item-top">
-                                        <img src={"https://blogapi.x10.mx/" + dataRowFive.Post_categories[0].Post.thumb} alt="" />
+                                        <img src={ dataRowFive.Post_categories[0].Post.thumb} alt="" />
                                         <div className="app-block-top_grid-item-image-gradient"></div>
                                         <div className="app-block-top_grid-item-image-tag-content">
                                             <div className="app-block-top_grid-item-image-tag-content-title "><Link to={"/post/" + dataRowFive.Post_categories[0].Post.slug}>
@@ -305,7 +305,7 @@ function Home(){
                                         }else {
                                             return(  <div key={key} className="app-block-center__last-content-item-list-flex">
                                             <div className="app-block-center__last-content-item-list-flex-image">
-                                                <img src={"https://blogapi.x10.mx/" + item.Post.thumb} alt="" />
+                                                <img src={ item.Post.thumb} alt="" />
                                             </div>
                                             <div className="app-block-center__last-content-item-list-flex-detail">
                                                 <Link to={"/post/" + item.Post.slug}><span>{item.Post.title}
@@ -336,7 +336,7 @@ function Home(){
                    {dataRandom && dataRandom.map((item, key) => (
                       <div key={key} className="app-block-center__grid-content-item">
                       <div className="app-block-center__grid-content-item-image">
-                          <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                          <img src={ item.thumb} alt="" />
                       </div>
                       <div className="app-block-center__grid-content-item-content">
                            <Link to={"/post/" + item.slug}> <span>{item.title}

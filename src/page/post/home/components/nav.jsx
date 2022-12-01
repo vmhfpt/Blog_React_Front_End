@@ -103,7 +103,7 @@ function Nav(){
                   {postSuggest && postSuggest.map((item, key) => (
                      <div key={key} className="app-block-center_content-post-flex-news-item">
                      <div className="app-block-center_content-post-flex-news-item-image">
-                         <img src={"https://blogapi.x10.mx/" + item.thumb} alt="" />
+                         <img src={item.thumb} alt="" />
                          
                      </div>
                      <div className="app-block-center_content-post-flex-news-item-content">
