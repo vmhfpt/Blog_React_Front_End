@@ -1,12 +1,13 @@
-import { Link,  useLocation} from "react-router-dom";
+import { Link,  useLocation,useParams,  useNavigate} from "react-router-dom";
 import { getSearch } from "./postReducer";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch,  useSelector} from "react-redux";
 import Nav from "../home/components/nav";
 import { getDataSearch } from "./selectPost";
 function PostSearch() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+  let params = useParams();
   const [query, setQuery] = useState(() => {
     return {
       page: 1,
@@ -20,14 +21,18 @@ function PostSearch() {
   let paramUrl = useQuery();
   useEffect(() => {
     const data = {
-        ...query,
+        page: paramUrl.get("page") ? Number(paramUrl.get("page")) : 1,
          key : paramUrl.get("key")
       };
      dispatch(getSearch(data));
-  }, [query, paramUrl.get("key")]);
+  }, [params, query]);
   
  const response =  useSelector(getDataSearch);
-
+ const handlePaginate = () => {
+  navigate({
+    search: '?key=' +paramUrl.get("key")+ '&page=' + response.paginate.next_page,
+  })
+}
   return (<>
     {response.length !== 0 ? <section className="app-block-center app-category container-fluid">
   <div className="container">
@@ -82,13 +87,7 @@ function PostSearch() {
 
 
                <div className="app-block-center__third-content-show-more">
-               {response.paginate.next_page && <button onClick={() => {
-                      setQuery(() => {
-                        return {
-                          page : response.paginate.next_page
-                        }
-                      })
-                    }}>Xem thêm {response.paginate.more_item} bài viết</button>}
+               {response.paginate.next_page && <button onClick={() => handlePaginate()}>Xem thêm {response.paginate.more_item} bài viết</button>}
                </div>
             </div>
 

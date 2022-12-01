@@ -1,29 +1,35 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,  useLocation, useNavigate} from "react-router-dom";
 import { isEmpty } from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { getPostByTag } from "../category/categoryReducer";
 import Nav from "../home/components/nav";
 import { getListPostTag } from "../category/selectCategory";
 function Tag(){
+  const useQuery = () => {
+    const { search } = useLocation();
+    return new URLSearchParams((search), [search]);
+  }
+  let paramUrl = useQuery();
+  const navigate = useNavigate();
     const dispatch = useDispatch();
   let params = useParams();
 
-  const [query, setQuery] = useState(() => {
-    return {
-      page: 1,
-    };
-  });
+ 
   useEffect(() => {
     const data = {
-      ...query,
+      page: paramUrl.get("page") ? Number(paramUrl.get("page")) : 1,
       slug: params.slug,
     };
     dispatch(getPostByTag(data));
-  }, [query, params]);
+  }, [ params]);
   
   const response = useSelector(getListPostTag);
-  
+  const handlePaginate = () => {
+    navigate({
+      search: '?page=' + response.paginate.next_page,
+    })
+  }
    
     return (<>
       {!isEmpty(response) ? <section className="app-block-center app-category container-fluid">
@@ -79,13 +85,7 @@ function Tag(){
 
 
                  <div className="app-block-center__third-content-show-more">
-                 {response.paginate.next_page && <button onClick={() => {
-                        setQuery(() => {
-                          return {
-                            page : response.paginate.next_page
-                          }
-                        })
-                      }}>Xem thêm {response.paginate.more_item} bài viết</button>}
+                 {response.paginate.next_page && <button onClick={() => handlePaginate()}>Xem thêm {response.paginate.more_item} bài viết</button>}
                  </div>
               </div>
 

@@ -29,7 +29,7 @@ function Post() {
     }, [params.slug]);
     const response = useSelector(getDataDetail);
     const comments = useSelector(getDataComment);
-    console.log(comments)
+    
     return (<>
         {!isEmpty(response) && <section className="app-block-center app-category container-fluid">
             <div className="container">
