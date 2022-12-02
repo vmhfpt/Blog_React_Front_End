@@ -11,3 +11,6 @@ export const getDataComment = (state) => {
 export const getDataUser = (state) => {
     return state.post.user;
 }
+export const  getLoading = (state) => {
+    return state.post.isLoading;
+}

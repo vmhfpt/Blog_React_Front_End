@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import postService from "../../../service/post.service";
 
 const initialState = {
+  isLoading : false,
   post : {},
   post_search : [],
   comments : [],
@@ -18,7 +19,11 @@ export const postSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    .addCase(getDetail.pending, (state, action) => {
+      state.isLoading = true;
+    })
       .addCase(getDetail.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.post = action.payload;
         state.comments = action.payload.result.Post_comments;
 

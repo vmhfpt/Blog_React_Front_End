@@ -7,7 +7,7 @@ import { getDataComment } from "./selectPost";
 import Nav from "../home/components/nav";
 import PostComment from "./postComment";
 import {isEmpty} from "lodash";
-
+import { getLoading } from "./selectPost";
 
 import {
     
@@ -21,7 +21,7 @@ import {
     
   } from "react-share";
 function Post() {
-    
+    const loading = useSelector(getLoading);
     const dispatch = useDispatch();
     let params = useParams();
     useEffect(() => {
@@ -29,11 +29,12 @@ function Post() {
     }, [params.slug]);
     const response = useSelector(getDataDetail);
     const comments = useSelector(getDataComment);
-    
+ 
     return (<>
-        {!isEmpty(response) && <section className="app-block-center app-category container-fluid">
+        {!isEmpty(response) &&  <section className="app-block-center app-category container-fluid">
             <div className="container">
                 <div className="app-block-center_content">
+                {!loading ? 
                     <div className="app-block-center_content-post ">
 
 
@@ -234,7 +235,16 @@ function Post() {
 
 
 
-                    </div>
+                    </div> : <div className="app-block-center_content-post ">
+                               <div className="app-block-detail delay-height">
+                                   <div className="delay-icon">
+                                         <div className="center-delay-icon">
+                                             <i className=" fa fa-spinner fa-spin"></i>
+                                         </div>
+                                   </div>
+                                </div>
+                                </div>
+                                }
                     <Nav />
                 </div>
             </div>

@@ -873,3 +873,25 @@ a>.app-block-center__content-category-tag-list-item:hover {
     border-radius: 3px;
     font-size: 14px;
 }
+.delay-icon  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1400;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.358);
+}
+.center-delay-icon i {
+    font-size: 50px;
+    color: orangered;
+    z-index: 1500;
+}
+.delay-height {
+     height: 100% !important;
+}
