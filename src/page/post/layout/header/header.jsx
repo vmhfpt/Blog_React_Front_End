@@ -12,25 +12,55 @@ function Header(){
   const { pathname } = useLocation();
     const [key, setKey] = useState('');
     const [dataAutoComplete, setDataAutoComplete] = useState([]);
-    function scrollFunction(e) {
+    /**function scrollFunction(e) {
       
         window.onwheel = e => {
     if(e.deltaY >= 0){
-      
+      console.log(e.deltaY)
       document.getElementById("navbar").style.top = "-63px";
     } else {
+      console.log(e.deltaY)
       document.getElementById("navbar").style.top = "0";
     }
   }
       }
+      useEffect(() => {
+        window.onscroll = function() {scrollFunction()};
+         dispatch(getList());
+         
+       }, []) */
+
+
+
+
   let params = useParams();
   const [tabSearch, setTabSearch] = useState(false);
   const dispatch = useDispatch();
-   useEffect(() => {
-    window.onscroll = function() {scrollFunction()};
-     dispatch(getList());
+  
+
+
+
+
+useEffect(() => {
+      const handleScroll = () => {
      
-   }, [])
+        if(window.scrollY >= 200){
+          document.getElementById("navbar").style.top = "-63px";
+        }else {
+          document.getElementById("navbar").style.top = "0";
+        }
+
+
+      }
+          window.addEventListener('scroll', handleScroll);
+       return () => {
+        window.removeEventListener('scroll', handleScroll);
+       }
+    }, [])
+ 
+
+
+
    useEffect(() => {
     setTabSearch(false);
 }, [params, pathname]);
