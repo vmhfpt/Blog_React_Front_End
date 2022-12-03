@@ -4,6 +4,10 @@ import {  animateScroll as scroll } from 'react-scroll';
 import url from "./icon/200w.gif";
 import logo from "../header/Logo/logo.png";
 function Footer(){
+
+   
+
+
     const [visible,  setVisible] = useState(false);
     const toTop = () => {
         scroll.scrollToTop();

@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 import { getPostByTag } from "../category/categoryReducer";
 import Nav from "../home/components/nav";
 import { getListPostTag } from "../category/selectCategory";
+import NotFound from "../404/notFound";
 function Tag(){
   const useQuery = () => {
     const { search } = useLocation();
@@ -25,6 +26,9 @@ function Tag(){
   }, [ params]);
   
   const response = useSelector(getListPostTag);
+  if(!response) {
+   return (<NotFound />);
+  }
   const handlePaginate = () => {
     navigate({
       search: '?page=' + response.paginate.next_page,

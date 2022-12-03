@@ -58,7 +58,7 @@ function Header() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [])
+  }, []);
 
 
 
@@ -113,7 +113,7 @@ function Header() {
             <div id="animate-scroll__nav" className="app-footer__content-nav  ">
               <div className="app-footer__content-nav-tab">
                 <div className="app-footer__content-nav-tab-item">
-                  <Link to=""> <span>MAGIFY</span></Link>
+                  <Link to="/"> <img src={Logo} alt="" /></Link>
                 </div>
                 <div className="app-footer__content-nav-tab-item">
                   <i onClick={() => closeNav()} className="fa fa-times" aria-hidden="true"></i>

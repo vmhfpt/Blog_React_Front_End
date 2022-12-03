@@ -10,6 +10,11 @@
     font-weight: 600;
     
 }
+.app-footer__content-nav-tab-item img {
+    width :  160px;
+    position: relative;
+    top : 5px;
+}
 iframe {
     width : 100%;
 }
@@ -20,6 +25,22 @@ iframe {
     width : 100% !important;
     height : 100% !important;
     object-fit: cover;
+}
+.image_custom table{
+    width: 100% !important;
+    table-layout:fixed;
+    word-break: break-word;
+   
+}
+.image_custom pre{
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+.image_custom code{
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 .breadcrumb-category {
     margin-bottom: 15px;

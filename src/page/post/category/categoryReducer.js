@@ -16,15 +16,27 @@ export const CategorySlice = createSlice({
     extraReducers: (builder) => {
         builder
           .addCase(getList.fulfilled, (state, action) => {
-                state.categories = action.payload;
+             
+                    state.categories = action.payload;    
                 
           })
           .addCase(getPostByCategory.fulfilled, (state, action) => {
-            state.posts = action.payload;
+           
+            if(!action.payload.error){
+                state.posts = action.payload;
+            }
+            else {
+                state.posts = null;
+            }
             
       })
       .addCase(getPostByTag.fulfilled, (state, action) => {
-        state.post_tags = action.payload;
+        if(!action.payload.error){
+            state.post_tags = action.payload;
+        }
+        else {
+            state.post_tags = null;
+        }
      });
           
       },

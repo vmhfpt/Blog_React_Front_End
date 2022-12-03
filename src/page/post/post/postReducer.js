@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import postService from "../../../service/post.service";
 
+
 const initialState = {
   isLoading : false,
   post : {},
@@ -23,9 +24,15 @@ export const postSlice = createSlice({
       state.isLoading = true;
     })
       .addCase(getDetail.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.post = action.payload;
-        state.comments = action.payload.result.Post_comments;
+       
+        if(!action.payload.error){
+          state.isLoading = false;
+          state.post = action.payload;
+          state.comments = action.payload.result.Post_comments;
+        }else {
+          state.post = null;
+        }
+        
 
       })
       .addCase(getSearch.fulfilled, (state, action) => {
@@ -45,6 +52,7 @@ export const postSlice = createSlice({
   },
 });
 export const getDetail = createAsyncThunk("post/detail", async (page) => {
+  
     const response = await postService.show(page);
     return response;
   });

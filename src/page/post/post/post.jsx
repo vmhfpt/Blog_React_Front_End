@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDetail } from "./postReducer";
@@ -8,6 +9,8 @@ import Nav from "../home/components/nav";
 import PostComment from "./postComment";
 import {isEmpty} from "lodash";
 import { getLoading } from "./selectPost";
+import NotFound from "../404/notFound";
+
 
 import {
     
@@ -20,16 +23,26 @@ import {
     TwitterShareButton,
     
   } from "react-share";
+
+ 
 function Post() {
+    
+    const history = useNavigate();
     const loading = useSelector(getLoading);
     const dispatch = useDispatch();
     let params = useParams();
     useEffect(() => {
         dispatch(getDetail({ slug: params.slug }))
     }, [params.slug]);
-    const response = useSelector(getDataDetail);
+    const  response = useSelector(getDataDetail);
+    
+   // history(`/not-found`);
     const comments = useSelector(getDataComment);
- 
+    if(!response) {
+        
+        return (<NotFound />);
+       
+    }
     return (<>
         {!isEmpty(response) &&  <section className="app-block-center app-category container-fluid">
             <div className="container">
@@ -120,10 +133,13 @@ function Post() {
                             </div>
 
                             <div className="app-block-detail__content">
-                                <div
+                            
+                               <div
                                     className="image_custom"
                                     dangerouslySetInnerHTML={{ __html: response.result.content }}
                                 ></div>
+                           
+                                
                             </div>
                             <div className="app-block-center__content-category-tag-list">
                                 {response.tag.map((item, key) => (

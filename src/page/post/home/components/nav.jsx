@@ -93,7 +93,7 @@ function Nav(){
     <div className="app-block-center__content-category-popular">
       <div className="app-tab__title tab-orange">
           <div className="app-tab__title-left">
-             <Link to=""><span>Đề suất</span></Link>
+             <Link to=""><span>Đề xuất</span></Link>
           </div>
           
       </div>

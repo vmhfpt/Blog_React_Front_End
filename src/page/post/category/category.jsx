@@ -7,6 +7,7 @@ import Nav from "../home/components/nav";
 import { getListPost } from "./selectCategory";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import NotFound from "../404/notFound";
 function Category() {
 
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function Category() {
   let params = useParams();
 
   const response = useSelector(getListPost);
+  
   const [query, setQuery] = useState(() => {
 
     return {
@@ -45,11 +47,14 @@ function Category() {
       ...count.current,
       slug: params.slug,
     };
-    
+   
     dispatch(getPostByCategory(data));
   }, [query, params]);
 
-
+  if(!response) {
+    
+    return (<NotFound />);
+ }
 
   const handlePaginate = () => {
     navigate({
