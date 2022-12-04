@@ -1,7 +1,46 @@
 import {Link} from "react-router-dom" ;
 import img from "./image/vmh.jpg";
 import project from "./image/1.png";
+import ScrollReveal from 'scrollreveal';
+import { useEffect } from "react";
 function Profile(){
+   
+    // ScrollReveal().reveal('.profile-introduce__block-left', {
+    //     distance: '0px',
+    //     opacity: 0.8
+    // });
+    // ScrollReveal().reveal('.profile-introduce__block-left', {
+    //     delay: 375,
+    //     duration: 500,
+    //     reset: true
+    // });
+    // ScrollReveal().reveal('.profile-about__block', {
+    //     delay: 375,
+    //     duration: 500,
+    //     reset: true
+    // });
+  //  ScrollReveal().reveal('.logo', { origin: 'top' });
+   
+   // ScrollReveal().reveal('.profile-project__block', { delay: 500, distance: '50px'});
+   // ScrollReveal().reveal('.profile-project__block');
+  //  ScrollReveal().reveal('.profile-project__block');//profile-about__study-flex-item 
+ useEffect(() => {
+    ScrollReveal({ reset: true });
+    ScrollReveal().reveal('.profile-about__study-flex-item, .profile-skill__block-left , .profile-skill__block-right', { scale: 0.85, delay: 370 });
+    ScrollReveal().reveal('.profile-about__block-right, .profile-about__block-left-content-item, .profile-title-job__item, .profile-testimonial__block-flex ', { delay: 370, rotate: {
+        x: 20,
+        y: 20,
+        z: 20
+    }});
+    ScrollReveal().reveal('.profile-introduce__block-left, .profile-introduce__block-right, .profile-project__block-item', { delay: 370, rotate: {
+        x: -20,
+        y: -20,
+        z: -20
+    }});
+    return () => {
+        ScrollReveal().destroy();
+    }
+ }, [])
   return ( <main>
       
       <section className="container-fluid app-profile">
