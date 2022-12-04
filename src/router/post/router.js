@@ -11,7 +11,7 @@ import Home from '../../page/post/home/home';
 import NotFound from "../../page/post/404/notFound";
 import Contact from "../../page/post/home/contact";
 
-
+import Profile from "../../page/post/about/profile";
 import About from "../../page/post/about/about";
 import Post from "../../page/post/post/post";
 import PostSearch from "../../page/post/post/postSearch";
@@ -36,6 +36,7 @@ function RouteAdmin(){
       
         <Route path="/" element={<LayoutAdmin />}>
            <Route index element={<Home />} />
+           <Route path="profile" element={<Profile />} />
            <Route path="contact" element={<Contact />} />
            <Route path="category/:slug" element={<Category />} />
            <Route path="tag/:slug" element={<Tag />} />

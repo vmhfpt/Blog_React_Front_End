@@ -82,9 +82,10 @@ function Footer(){
                  <div className="app-header__nav-right">
                       <ul>
                          <Link to="/"><li>Trang chủ</li></Link>
-                         <Link to="/about/ve-toi"><li>Về tôi</li></Link>
+                         <Link to="/about/ve-toi"><li>Nội quy</li></Link>
                          <Link to="/about/chinh-sach"><li>Chính sách</li></Link>
                          <Link to="/contact"><li>Liên hệ</li></Link>
+                         <Link to="/profile"><li>Về tôi</li></Link>
                       </ul>
                  </div>
            </div>
