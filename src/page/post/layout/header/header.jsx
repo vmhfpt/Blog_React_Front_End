@@ -124,7 +124,7 @@ function Header() {
                 {response && response.map((item, key) => (
                   <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li>{item.title}</li></Link>
                 ))}
-                <Link to="/profile"><li>Về tôi</li></Link>
+                <Link onClick={() => closeNav()} to="/profile"><li>Về tôi</li></Link>
 
               </ul>
             </div>
