@@ -7,16 +7,22 @@ function Profile(){
       
  useEffect(() => {
     ScrollReveal({ reset: true });
-    ScrollReveal().reveal('.profile-about__study-flex-item, .profile-skill__block-left , .profile-skill__block-right', { opacity: 0.1,scale: 0.85, delay: 320 });
-    ScrollReveal().reveal('.profile-about__block-right, .profile-about__block-left-content-item, .profile-title-job__item, .profile-testimonial__block-flex ', { opacity: 0.1, distance: '120px' , delay: 320, rotate: {
-        x: 20,
-        y: 20,
-        z: 20
+    
+
+    ScrollReveal().reveal('.profile-about__study-flex-item, .profile-skill__block-left , .profile-skill__block-right', {  distance: '120px' , delay: 290, rotate: {
+        x: 0,
+        y: 0,
+        z: 0
     }});
-    ScrollReveal().reveal('.profile-introduce__block-left, .profile-introduce__block-right, .profile-project__block-item', {opacity: 0.1,distance: '120px' , delay: 320, rotate: {
-        x: -20,
-        y: -20,
-        z: -20
+    ScrollReveal().reveal('.profile-about__block-right, .profile-about__block-left-content-item, .profile-title-job__item, .profile-testimonial__block', {  distance: '120px' , delay: 290, rotate: {
+        x: 0,
+        y: 0,
+        z: 0
+    }});
+    ScrollReveal().reveal('.profile-introduce__block-left, .profile-introduce__block-right, .profile-project__block-item', {distance: '120px' , delay: 290, rotate: {
+        x: 0,
+        y: 0,
+        z: 0
     }});
     return () => {
         ScrollReveal().destroy();
