@@ -76,6 +76,15 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+    
+
+.profile-about__block-right-content-top {
+    
+    grid-template-columns: auto !important;
+}
+.profile-about__block-right-content-top-item {
+    margin : 10px 0px;
+}
     .profile-about__block-right {
         margin-top: 40px;
     }
