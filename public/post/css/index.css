@@ -1,3 +1,7 @@
+.nav-active {
+    color : orangered !important;
+
+}
 .form-group {
     padding : 8px 0px;
 }
@@ -126,7 +130,7 @@ iframe {
   position: relative;
 }
 .app-footer__content-search-detail {
-    
+    width : 236px !important;
     align-items: center;
     display: flex;
     position: absolute;
@@ -295,7 +299,7 @@ div img:hover {
 
 .app-footer__content-search {
     flex : 0 0 60px;
-  
+    
     background-color: rgba(20, 20, 20, 0.271);;
     display: flex;
     align-items: center;

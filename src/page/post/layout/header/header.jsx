@@ -34,6 +34,7 @@ function Header() {
 
 
   let params = useParams();
+  
   const [tabSearch, setTabSearch] = useState(false);
   const dispatch = useDispatch();
 
@@ -122,7 +123,7 @@ function Header() {
               <ul>
                 <Link onClick={() => closeNav()} to=""><li>Trang chủ</li></Link>
                 {response && response.map((item, key) => (
-                  <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li>{item.title}</li></Link>
+                  <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li className={item.slug === params.slug ? "nav-active" : ""}>{item.title}</li></Link>
                 ))}
                 <Link onClick={() => closeNav()} to="/profile"><li>Về tôi</li></Link>
 

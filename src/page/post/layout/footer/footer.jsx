@@ -46,7 +46,8 @@ function Footer(){
                  <div className="col-lg-7 col-sm-12 col-md-5 ">
                       <div className="app-header__about-content">
                           <span className="footer-title">Giới thiệu</span>
-                          <p>Trang blog tâm sự chia sẻ thử thuật liên quan đến lập trình, chịu trách nhiệm nội dung bài viết, bản quyền thuộc về tác giả console.log(), "website này kéo thả bằng <a href="https://wordpress.com/">wordpress</a> thôi !!!" </p>
+                          <p>Trang blog tâm sự, chia sẻ mẹo hay, thủ thuật lập trình, chịu trách nhiệm nội dung bài viết, bản quyền thuộc về tác giả console.log("copy and paste"). </p>
+                          <p>BLOG AT  <a href="https://wordpress.com/">WORDPRESS.COM</a></p>
                       </div>
                  </div>
                  <div className="col-lg-3 col-sm-12 col-md-4 ">

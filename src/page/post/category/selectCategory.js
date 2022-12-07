@@ -10,3 +10,6 @@ export const  getListPostTag = (state) => {
 export const  getListAllCategory = (state) => {
     return state.category.category;
 }
+export const getLoading = (state) => {
+    return state.category.isLoading;
+}

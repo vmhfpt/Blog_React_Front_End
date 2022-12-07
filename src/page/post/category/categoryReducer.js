@@ -5,7 +5,8 @@ import CategoryService from "../../../service/category.service";
 const initialState = {
     categories : [],
     posts : [],
-    post_tags : []
+    post_tags : [],
+    isLoading : false
 };
 export const CategorySlice = createSlice({
     name : 'categoryReducer',
@@ -15,14 +16,18 @@ export const CategorySlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+        .addCase(getPostByCategory.pending, (state, action) => {
+            
+            state.isLoading = true;
+          })
+          
           .addCase(getList.fulfilled, (state, action) => {
-             
-                    state.categories = action.payload;    
-                
+                    state.categories = action.payload;  
           })
           .addCase(getPostByCategory.fulfilled, (state, action) => {
            
             if(!action.payload.error){
+                state.isLoading = false;
                 state.posts = action.payload;
             }
             else {
@@ -30,8 +35,13 @@ export const CategorySlice = createSlice({
             }
             
       })
+      .addCase(getPostByTag.pending, (state, action) => {
+           
+        state.isLoading = true;
+      })
       .addCase(getPostByTag.fulfilled, (state, action) => {
         if(!action.payload.error){
+            state.isLoading = false;
             state.post_tags = action.payload;
         }
         else {
