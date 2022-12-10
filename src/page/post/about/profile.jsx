@@ -6,7 +6,7 @@ import { useEffect } from "react";
 function Profile(){
       
  useEffect(() => {
-    ScrollReveal({ reset: true });
+    ScrollReveal({ reset: false });
     
 
     ScrollReveal().reveal('.profile-about__study-flex-item, .profile-skill__block-left , .profile-skill__block-right', {  distance: '120px' , delay: 290, rotate: {
