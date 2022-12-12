@@ -11,8 +11,15 @@
         width : 100%;
         z-index: 2000;
         height : 450px;
+        padding : 0px 15px;
         box-shadow: 0px 0px 5px rgb(171, 170, 170);
     }
+   .app-chat__tab {
+    padding : 10px 15px;
+   }
+   .app-chat__post-comment {
+    padding : 10px 15px;
+   }
     .app-header__about-logo img {
         width : 45%;
     }
