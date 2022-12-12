@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef  } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataComment } from "./selectPost";
 import { Link } from "react-router-dom";
@@ -6,8 +6,17 @@ import { setValueUser } from "./postReducer";
 import {isEmpty} from "lodash";
 import { getDataUser } from "./selectPost";
 import { postComment } from "./postReducer";
+import socketIOClient from "socket.io-client";
 import {  Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+const host = "https://blog.diaocconsole.tk";
 function PostComment({slug}){
+    const socketRef = useRef();
+    useEffect(() => {
+        socketRef.current = socketIOClient.connect(host, {path: '/chat/'});
+        return () => {
+            socketRef.current.disconnect();
+        };
+    }, []);
     const dataUser = useSelector(getDataUser);
     const comments = useSelector(getDataComment);
     const dispatch = useDispatch();
@@ -95,10 +104,13 @@ function PostComment({slug}){
             setIdComment(false);
             var dataApi = {};
              if(isEmpty(dataUser)){
+                const randomId = Math.floor(100000 + Math.random() * 900000);
+                socketRef.current.emit('login',{userId: randomId});
                 dispatch(setValueUser({
                     name : name,
                     email : email,
-                    number : number
+                    number : number,
+                    id : randomId
                 }));
                 dataApi = {
                     name : name,

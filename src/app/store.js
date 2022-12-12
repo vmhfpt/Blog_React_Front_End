@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { persistReducer } from 'redux-persist';
 import CategorySlice from '../page/post/category/categoryReducer';
 
-
+import chatSlice from "../page/post/layout/footer/chatReducer";
 import homeSlice from '../page/post/home/homeReducer';
 import  postSlice  from '../page/post/post/postReducer';
 const homeConfig = {
@@ -13,9 +13,8 @@ const homeConfig = {
   storage,
 };
 const reducers = combineReducers({
- 
+  chat : chatSlice,
   category : CategorySlice,
- 
   home :  homeSlice,
   post : postSlice
 });

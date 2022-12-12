@@ -3,9 +3,10 @@ import { useState } from "react";
 import {  animateScroll as scroll } from 'react-scroll';
 import url from "./icon/200w.gif";
 import logo from "../header/Logo/logo.png";
+import Chat from "./chat";
 function Footer(){
 
-   
+   const [showChat, setShowChat] = useState(false);
 
 
     const [visible,  setVisible] = useState(false);
@@ -29,9 +30,9 @@ function Footer(){
 
     </div>}
 
-   <a href="https://m.me/hung.v.minh.7"> <div className="chat-now">
+   <div onClick={() =>  setShowChat(!showChat)}className="chat-now">
         <img src={url} alt="" />
-    </div> </a>
+    </div> 
     <div className="app-header__about container-fluid">
          <div className="container">
              <div className="row">
@@ -93,6 +94,10 @@ function Footer(){
             </div>
         </div>
     </div>
+
+  
+    {showChat &&  <Chat tab={setShowChat}/>}
+   
 </footer>);
 }
 export default Footer;

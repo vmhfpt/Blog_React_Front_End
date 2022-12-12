@@ -1,6 +1,18 @@
 
 
 @media only screen and (max-width: 600px) {
+    .app-chat__container {
+        padding: 2px;
+        background: white;
+        position: fixed;
+        border-radius: 6px;
+        bottom: 0px;
+        right : 0px;
+        width : 100%;
+        z-index: 2000;
+        height : 450px;
+        box-shadow: 0px 0px 5px rgb(171, 170, 170);
+    }
     .app-header__about-logo img {
         width : 45%;
     }
@@ -299,9 +311,7 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    .chat-now {
-        display: none;
-       }
+   
        .app-header__about-logo img {
         width : 100%;
     }

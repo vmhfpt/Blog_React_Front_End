@@ -2,6 +2,9 @@
     color : orangered !important;
 
 }
+.chat-now {
+    cursor: pointer;
+}
 .form-group {
     padding : 8px 0px;
 }
@@ -919,4 +922,292 @@ a>.app-block-center__content-category-tag-list-item:hover {
 }
 .delay-height {
      height: 100% !important;
+}
+
+/*---------------------------------------------*/
+
+.app-chat__container {
+    padding: 2px;
+    background: white;
+    position: fixed;
+    border-radius: 6px;
+    bottom: 0px;
+    right : 62px;
+    width : 330px;
+    z-index: 2000;
+    height : 450px;
+    box-shadow: 0px 0px 5px rgb(171, 170, 170);
+}
+.app-chat__content {
+    position: relative;
+   
+}
+.app-chat__tab {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    position: absolute;
+    top : 0px;
+    background: white;
+    width : 100%;
+    left : 0px;
+   padding : 5px;
+    display: flex;
+    z-index: 2000;
+    border-bottom: 1px solid #eeeeee;
+}
+.app-chat__tab-image {
+    
+  flex : 0 0 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-chat__tab-name {
+   padding : 0px 2px;
+  width : 100%;
+}
+.app-chat__tab-close {
+    flex : 0 0 40px;
+}
+.app-chat__tab-image-name {
+    position: relative;
+    font-weight: 600;
+    color : white;
+    width : 36px;
+    height : 36px;
+    border-radius: 100%;
+    background: #0077b5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.app-chat__tab-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.app-chat__tab-name-title {
+    color : #333;
+    font-weight: 600;
+    font-size: 15px;
+}
+.app-chat__tab-name-status {
+    color : rgb(108, 108, 108);
+    font-size: 14px;
+}
+.app-chat__tab-close {
+    cursor: pointer;
+    font-size: 27px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+   
+}
+.app-chat__tab-image-point {
+    position: absolute;
+    bottom: 1px;
+    right : 0px;
+    background: rgb(1, 180, 67);
+    width : 13px;
+    height : 13px;
+    border-radius: 100%;
+    border: 2px solid white;
+}
+.app-chat__detail {
+    padding : 50px 7px 50px 7px;
+    height : 100%;
+    overflow-y: auto;
+}
+.app-chat__detail-someone {
+   
+    display: flex;
+}
+.app-chat__detail-someone-name {
+  flex : 0 0 40px;
+
+  font-size: 600;
+  display: flex;
+  align-items: flex-end;
+}
+.app-chat__detail-someone-content {
+  width : 100%;
+}
+.app-chat__detail-someone-name-char {
+    position: relative;
+    z-index: 3;
+    width : 33px;
+    height : 33px;
+    background-color: rgb(231, 231, 231);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.app-chat__detail-someone-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eeeeee;
+  padding : 5px 10px 5px 10px;
+  border-radius: 16px;
+  line-height: 20px;
+}
+.border-admin {
+    border : 1px solid red !important;
+}
+.app-chat__detail-someone-content span {
+   font-size: 15px;
+   color : #333;
+}
+.app-chat__is-online {
+    background: rgb(1, 180, 67);
+    width : 12px ;
+    height : 12px;
+    border-radius: 100%;
+    border : 2px solid white;
+    position: absolute;
+    bottom: 0px;
+    right : 0px;
+}
+.app-chat__is-offline {
+    background: rgb(207, 207, 207);
+    width : 12px ;
+    height : 12px;
+    border-radius: 100%;
+    border : 2px solid white;
+    position: absolute;
+    bottom: 0px;
+    right : 0px;
+}
+.app-chat__detail-someone-date-someone {
+    padding : 2px 0px;
+    color : #333;
+    font-size: 13px;
+    display: flex;
+    justify-content: flex-start;
+}
+.app-chat__detail-someone-date-my-chat {
+    padding : 2px 0px;
+    color : #333;
+    font-size: 13px;
+    display: flex;
+    justify-content: flex-end;
+}
+.app-chat__detail-item {
+    margin : 12px 0px;
+}
+.app-chat__detail-someone-name {
+    font-size: 12px;
+    padding : 2px 0px;
+}
+.app-chat__detail-item-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.app-chat__detail-my-chat-image {
+    flex : 0 0 40px;
+    
+}
+.app-chat__detail-my-chat-content {
+    
+    color : #fff;
+    
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3773ed;
+    padding : 5px 10px 5px 10px;
+    border-radius: 16px;
+    line-height: 20px;
+}
+.app-chat__supper-admin{
+    position: absolute;
+    top : -5px;
+    background: red;
+    color : white;
+    font-size: 9px;
+    padding : 0px 4px;
+    border-radius: 9px;
+}
+.app-chat__post-comment {
+    position: absolute;
+    background: white;
+    width : 100%;
+   padding : 10px 7px;
+    bottom: 0px;
+    left : 0px;
+    z-index: 2000;
+    display: flex;
+}
+.app-chat__post-comment-input {
+    width : 100%;
+}
+.app-chat__post-comment-button {
+    flex : 0 0 40px;
+}
+.app-chat__post-comment-input input {
+    width : 100%;
+    border : none;
+   background: #eeeeee;
+   padding : 9px 15px;
+ 
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+   color : #333;
+   font-size: 15px;
+}
+.app-chat__post-comment-input input:focus {
+    outline: none;
+    
+}
+.app-chat__post-comment-button {
+    cursor: pointer;
+    border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color : #fff;
+    background: #3773ed;
+}
+.app-chat__detail-typing img {
+    width :35px;
+    height : 30px;
+}
+.app-chat__detail-typing {
+    width : 100%;
+}
+.bg-admin {
+    background: rgba(255, 141, 141, 0.292) !important;
+}
+.app-chat__detail-text-typing {
+   
+    display: flex;
+    align-items: center;
+    
+    padding : 0px 8px 0px 0px;
+    font-size: 14px;
+    
+}
+.app-chat__tab-quick-start {
+    font-size: 23px;
+    font-weight: 600;
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.app-chat__tab-register {
+    margin-top : 55px;
+    padding : 0px 20px 0px 20px;
+}
+.app-chat__tab-button-register {
+    width : 100%;
+    color : #fff;
+    margin-top: 5px;
+    border : none;
+    padding : 12px;
+    cursor: pointer;
+    background: #3773ed;
 }
