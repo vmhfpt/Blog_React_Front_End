@@ -60,15 +60,19 @@ function PostComment({slug}){
       };
     
       const handleName = (e) => {
+        
         setName(e.target.value);
     
         if (e.target.value === "" || e.target.value[0] === " ") {
           setErrorName("* Tên không được để trống");
-        } else {
+        } else if((e.target.value).length <= 8 || (e.target.value).length >= 20){
+            setErrorName("* Tên phải từ 8 đến 20 ký tự");
+        }else {
           setErrorName("");
         }
       };
       const handleEmail = (e) => {
+      
         setEmail(e.target.value);
         if (e.target.value === "") {
           setErrorEmail("* Email không được để trống");
@@ -77,10 +81,13 @@ function PostComment({slug}){
         }
       };
       const handleNumber = (e) => {
+        const regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
         setNumber(e.target.value);
         if (e.target.value === "" || e.target.value[0] === " ") {
           setErrorNumber("* Số điện thoại không được để trống");
-        } else {
+        }else if(regex.test(e.target.value) === false) {
+            setErrorNumber("* Số điện thoại không hợp lệ");
+        }else {
           setErrorNumber("");
         }
       };
@@ -99,7 +106,7 @@ function PostComment({slug}){
 
 
       const handleSubmit = (parent_id) => {
-  
+    
         if ((errorContent === '' && errorEmail === '' &&  errorName === '' && errorNumber === '') ){
             setIdComment(false);
             var dataApi = {};
@@ -217,10 +224,10 @@ function PostComment({slug}){
                                             <div className="form-group ">
                                                 <label>Email *</label>
                                                 <input 
-                                                 autoComplete="off"
+                                                
                                                   value={email}
                                                   onChange={(e) => handleEmail(e)}
-                                                  type="email" 
+                                                  type="text" 
                                                   placeholder="Nhập email" />
                                                 <span> {errorEmail}</span>
                                             </div>
@@ -326,8 +333,8 @@ function PostComment({slug}){
                                                  autoComplete="off"
                                                   value={email}
                                                   onChange={(e) => handleEmail(e)}
-                                                  type="email" 
-                                                  placeholder="Nhập email" />
+                                                  type="text" 
+                                                  placeholder="Nhập email " />
                                                 <span> {errorEmail}</span>
                                             </div>
                                         </div>

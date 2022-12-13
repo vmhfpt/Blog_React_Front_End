@@ -1,9 +1,34 @@
+.show-app__chat {
+    display: block !important;
+}
+.hidden-app__chat {
+    display: none !important;
+}
+
+
+
 .nav-active {
     color : orangered !important;
 
 }
+.chat-total__notify {
+    background: red;
+    top : -8px;
+    right : 0px;
+    font-size: 12px;
+    width : 23px;
+    height : 23px;
+    display: flex;
+    align-items: center;
+    color : #fff;
+    font-weight: 600;
+    justify-content: center;
+    border-radius: 100%;
+    position: absolute;
+}
 .chat-now {
     cursor: pointer;
+   
 }
 .form-group {
     padding : 8px 0px;
