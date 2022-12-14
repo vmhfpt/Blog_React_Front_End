@@ -126,7 +126,7 @@ function Header() {
                   <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li className={item.slug === params.slug ? "nav-active" : ""}>{item.title}</li></Link>
                 ))}
                 <Link onClick={() => closeNav()} to="/profile"><li>Về tôi</li></Link>
-
+                <Link onClick={() => closeNav()} to="/user/login"><li>Đăng nhập</li></Link>
               </ul>
             </div>
             <div className="app-footer__content-search ">

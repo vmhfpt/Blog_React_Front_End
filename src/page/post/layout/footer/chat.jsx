@@ -298,11 +298,11 @@ function Chat() {
                             return (<div key={key} className="app-chat__detail-item">
                                 <div className="app-chat__detail-someone">
                                     <div className="app-chat__detail-someone-name">
-                                        <div className={item.user_id === 130326 ? "app-chat__detail-someone-name-char border-admin" : "app-chat__detail-someone-name-char"}>
+                                        <div className={item.user_id === 2 ? "app-chat__detail-someone-name-char border-admin" : "app-chat__detail-someone-name-char"}>
                                             <div>
                                                 {item.name[(item.name).lastIndexOf(" ") + 1]}
                                             </div>
-                                            {item.user_id === 130326 ? <div className="app-chat__supper-admin">
+                                            {item.user_id === 2 ? <div className="app-chat__supper-admin">
                                                 AD
                                             </div> : ''}
                                             <div className={checkOnline(item.user_id) ? "app-chat__is-online" : "app-chat__is-offline"}>
@@ -314,7 +314,7 @@ function Chat() {
                                         <div className="app-chat__detail-someone-name">
                                             <span>{item.name}</span>
                                         </div>
-                                        <div className={item.user_id === 130326 ? "app-chat__detail-someone-content bg-admin" : "app-chat__detail-someone-content"} >
+                                        <div className={item.user_id === 2 ? "app-chat__detail-someone-content bg-admin" : "app-chat__detail-someone-content"} >
                                             <span> {item.content}</span>
                                         </div>
                                     </div>

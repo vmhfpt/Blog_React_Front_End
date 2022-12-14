@@ -15,6 +15,8 @@ import Profile from "../../page/post/about/profile";
 import About from "../../page/post/about/about";
 import Post from "../../page/post/post/post";
 import PostSearch from "../../page/post/post/postSearch";
+
+import Login from "../../page/post/user/login";
 function LayoutAdmin() {
 
   return (
@@ -36,6 +38,7 @@ function RouteAdmin(){
       
         <Route path="/" element={<LayoutAdmin />}>
            <Route index element={<Home />} />
+           <Route path="user/login" element={<Login />} />
            <Route path="profile" element={<Profile />} />
            <Route path="contact" element={<Contact />} />
            <Route path="category/:slug" element={<Category />} />

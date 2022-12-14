@@ -17,6 +17,7 @@ export const postSlice = createSlice({
     setValueUser: (state, action) => {
           state.user = action.payload;
       },
+     
   },
   extraReducers: (builder) => {
     builder
@@ -45,6 +46,11 @@ export const postSlice = createSlice({
          state.comments = action.payload;
        // state.post_search = action.payload;
         
+      })
+      .addCase(login.fulfilled, (state, action) => {
+         console.log(action.payload);
+        
+        
       });
 
 
@@ -64,8 +70,12 @@ export const getDetail = createAsyncThunk("post/detail", async (page) => {
     const response = await postService.postComment(data);
     return response;
   });
+  export const login = createAsyncThunk("login/user", async (data) => {
+    const response = await postService.login(data);
+    return response;
+  });
 
 
-export const { setValueUser } = postSlice.actions;
+export const { setValueUser} = postSlice.actions;
 
 export default postSlice.reducer;

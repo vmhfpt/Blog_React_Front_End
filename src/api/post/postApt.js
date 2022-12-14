@@ -16,6 +16,10 @@ const PostApt = {
     postComment : (data) => {
       const url = '/post-comment';
       return axiosClient.post(url, data);
+    },
+    login : (data) => {
+      const url = '/user/login';
+      return axiosClient.post(url, data);
     }
    
   }

@@ -14,6 +14,9 @@ class PostService {
     async postComment(data) {
         return await PostApi.postComment(data);
     }
+    async login(data) {
+        return await PostApi.login(data);
+    }
     
 }
 export default new PostService();

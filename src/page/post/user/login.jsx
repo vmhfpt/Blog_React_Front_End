@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { login } from "./authReducer";
-import { logout } from "./authReducer";
-import {useDispatch} from "react-redux";
 
+import {useDispatch} from "react-redux";
+import { setValueUser } from "../post/postReducer";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../../../service/auth.service";
+import PostService from "../../../service/post.service";
 function Login() {
   const history = useNavigate();
   
@@ -16,7 +15,8 @@ function Login() {
   const [error, setError] = useState({ email: "", password: "" });
 
   const handleEmail = (value) => {
-    if (value.length < 5) {
+    setStatus(false);
+    if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))) {
       setError((prev) => {
         return { ...prev, email: "* Email không hợp lệ" };
       });
@@ -28,9 +28,10 @@ function Login() {
     setEmail(value);
   };
   const handlePassword = (value) => {
-    if (value.length < 5) {
+    setStatus(false);
+    if (value.length < 5 || value.length >= 20) {
       setError((prev) => {
-        return { ...prev, password: "* Mật khẩu phải ít nhất 5 kí tự" };
+        return { ...prev, password: "* Mật khẩu phải từ  5 đến 20 kí tự" };
       });
     } else {
       setError((prev) => {
@@ -41,6 +42,7 @@ function Login() {
   };
   
   const handleSubmit = async () => {
+    
     if(email === "" || password === ""){
       if (email === "") {
         setError((prev) => {
@@ -57,98 +59,53 @@ function Login() {
 
 
     if (error.email === "" && error.password === "") {
-         const response = await AuthService.login({email : email, password : password});
-         if (response.status === "error") {
-          dispatch(logout());
-          setStatus(response.message);
-          setPassword("");
-          localStorage.setItem('accessToken',null);
-          localStorage.setItem('refreshToken',null);
-        } else {
-          localStorage.setItem('accessToken',response.token);
-          localStorage.setItem('refreshToken',response.refreshToken);
-          dispatch(
-            login({
-              accessToken: response.token,
-              refreshToken: response.refreshToken,
-              isLogin: true,
-              name : response.name,
-              email : response.email,
-              id : response.id
-            })
-          );
-           history(`/`);
        
-        } 
+         
+         const result = await PostService.login({email, password});
+        
+         if(result.status === "success") {
+          dispatch(setValueUser({name : result.data.name, id : Number(result.data.id), email : result.data.email}));
+          history(`/`);
+         }else {
+          setStatus(result.message);
+         }
+        
+   
         
     }
     
-  };
+  }; 
  
   return (
-    <section id="aa-signin">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="aa-signin-area">
-              <div className="aa-signin-form">
-                <div className="aa-signin-form-title">
-                  <Link className="aa-property-home" to="/">
-                    Địa ốc Console.log
-                  </Link>
-                  <h4>Đăng nhập bằng tài khoản của bạn</h4>
-                </div>
-                <form className="contactform">
-                  <div className="aa-single-field">
-                    <label>
-                      Email <span className="required">*</span>
-                    </label>
-                    <input
-                      onChange={(e) => handleEmail(e.target.value)}
-                      value={email}
-                      type="email"
-                      required="required"
-                      aria-required="true"
-                    />
-                    <span className="custom-error">{error.email} </span>
-                  </div>
-                  <div className="aa-single-field">
-                    <label>
-                      Password <span className="required">*</span>
-                    </label>
-                    <input
-                      value={password}
-                      onChange={(e) => handlePassword(e.target.value)}
-                      type="password"
-                    />
-                    <span className="custom-error">{error.password} </span>
-                  </div>
-                  <div className="aa-single-field">
-                    <label>
-                      <input type="checkbox" /> Remember me
-                    </label>
-                  </div>
-                    <div style={{"clear" : "both"}}></div>
-                  {status  && <div className="error_login_custom">{ status}</div>}
-                  <div className="aa-single-submit">
-                    <input
-                      onClick={() => handleSubmit()}
-                      type="button"
-                      value="Đăng nhập"
-                      className="aa-browse-btn"
-                    />
-                    <p>
-                      Bạn chưa có tài khoản?{" "}
-                      <Link to="/register">Tạo ngay!</Link>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section className="container-fluid app-contact">
+    <div className="container">
+   
+           <div className="form-container__app">
+           <div className="form-container__app-content">
+               <div className="app-contact__right">
+                   <div className="app-contact__form-title">
+                       <span>Đăng nhập</span>
+                   </div>
+                   <div className="app-contact__form-content">
+                       <form>
+                           
+                           <input value={email} onChange={(e) =>  handleEmail(e.target.value)}type="email" placeholder="Email của bạn" />
+                           <span className="error-form"> {error.email}</span>
+                           <input value={password} onChange={(e) => handlePassword(e.target.value)} type="password" placeholder="Mật khẩu" />
+                           <span className="error-form"> {error.password}</span>
+                           <button onClick={() => handleSubmit()} type="button">Đăng nhập</button>
+                           {status && <div className="popup-login">
+                              <span>{status}</span>
+                           </div>}
+                           
+                       </form>
+                   </div>
+               </div>
+           </div>
+           </div>
+
+    </div>
+  </section>
   );
 }
 export default Login;
