@@ -201,10 +201,11 @@ function Chat() {
             return "* Bắt buộc";
         }
     });
-    const emailValidation = () => {
+    const emailValidation = (value) => {
+        
         const regex =
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (regex.test(email) === false) {
+        if (regex.test(value) === false) {
             setErrorEmail("* Email không hợp lệ");
         } else {
             setErrorEmail("");
@@ -224,11 +225,12 @@ function Chat() {
         }
       };
     const handleEmail = (e) => {
+      
         setEmail(e.target.value);
         if (e.target.value === "") {
             setErrorEmail("* Email không được để trống");
         } else {
-            emailValidation();
+            emailValidation(e.target.value);
         }
     };
     const handleNumber = (e) => {

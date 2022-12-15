@@ -7,8 +7,10 @@ import { getListCategory } from "../../category/selectCategory";
 import postService from "../../../../service/post.service";
 import { useLocation } from "react-router-dom";
 import Logo from './Logo/logo.png';
+import { getDataUser } from "../../post/selectPost";
+import { isEmpty } from "lodash";
 function Header() {
-
+  const dataUser = useSelector(getDataUser);
   const { pathname } = useLocation();
   const [key, setKey] = useState('');
   const [dataAutoComplete, setDataAutoComplete] = useState([]);
@@ -126,7 +128,7 @@ function Header() {
                   <Link onClick={() => closeNav()} key={key} to={"/category/" + item.slug}><li className={item.slug === params.slug ? "nav-active" : ""}>{item.title}</li></Link>
                 ))}
                 <Link onClick={() => closeNav()} to="/profile"><li>Về tôi</li></Link>
-                <Link onClick={() => closeNav()} to="/user/login"><li>Đăng nhập</li></Link>
+                {isEmpty(dataUser) ? <Link onClick={() => closeNav()} to="/user/login"><li>Đăng nhập</li></Link> : <li>{dataUser.name}</li>}
               </ul>
             </div>
             <div className="app-footer__content-search ">
