@@ -27,7 +27,7 @@ function Chat() {
     const dataChat = useSelector(getDataChat);
     const dataUser = useSelector(getDataUser);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
         if (tabCheck === true) {
             temp.current = 1;
@@ -47,7 +47,7 @@ function Chat() {
 
         socketRef.current.emit('login', { userId: dataUser.id });
         socketRef.current.on("sendDataServer", (item) => {
-
+          
             const data = {
                 name: item.name,
                 content: item.content,
@@ -94,7 +94,7 @@ function Chat() {
         return (exists);
     }
 
-
+   
     const postMessage = () => {
         const ccs = dataUser.name;
         const lls = dataUser.id;
@@ -133,8 +133,44 @@ function Chat() {
             element.scrollTop = element.scrollHeight;
         }, 100);
     };
+    function getTimeCurrent(date) {
+      
+        let diffTime = Math.abs(new Date().valueOf() - new Date(date).valueOf());
+        let days = diffTime / (24 * 60 * 60 * 1000);
+        let hours = (days % 1) * 24;
+        let minutes = (hours % 1) * 60;
+        let secs = (minutes % 1) * 60;
+        [days, hours, minutes, secs] = [Math.floor(days), Math.floor(hours), Math.floor(minutes), Math.floor(secs)]
 
 
+        if (days !== 0) {
+            return `${days} ngày trước`;
+        } else if (hours !== 0) {
+            return `${hours} giờ trước`;
+        } else if (minutes !== 0) {
+            return `${minutes} phút trước`;
+        } else {
+            return `${secs} giây trước`;
+        }
+
+    }
+    
+    useEffect(() => {
+      
+        if (!isEmpty(dataUser)) {
+            var myInterval =  setInterval(() => {
+                const select = document.getElementsByClassName("time-current");
+                for (var i = 0; i < select.length; i++) {
+                   var dataDate = (select[i].getAttribute('data-chat')).replaceAll(".000Z", "");
+                    select[i].innerText = getTimeCurrent(dataDate);
+                }
+            }, 1000);
+        }
+      return () => {
+        clearInterval(myInterval);
+      }
+ 
+    }, [dataUser]);
 
 
 
@@ -291,7 +327,7 @@ function Chat() {
                                     </div>
                                 </div>
                                 <div className="app-chat__detail-someone-date-my-chat">
-                                    <div><span>{item.createdAt}</span></div>
+                                    <div><span className="time-current" data-chat={item.createdAt}>--:--</span></div>
                                 </div>
                             </div>);
                         } else {
@@ -320,7 +356,7 @@ function Chat() {
                                     </div>
                                 </div>
                                 <div className="app-chat__detail-someone-date-someone">
-                                    <div><span>{item.createdAt}</span></div>
+                                    <div><span className="time-current" data-chat={item.createdAt} >--:--</span></div>
                                 </div>
                             </div>);
                         }
