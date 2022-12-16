@@ -10,9 +10,23 @@ import { getDataShowTab } from "./selectChat";
 import { useDispatch } from "react-redux";
 import { setShowTab } from "./chatReducer";
 import { setAlert } from "./chatReducer";
+import Draggable from 'react-draggable'; // Both at the same time
 function Footer() {
+    
     const tabCheck = useSelector(getDataShowTab);
-
+    const eventHandler = (e, data) => {
+      if(e.type === "touchmove")   dispatch(setShowTab(false));
+      if(e.type === "touchend") {
+        dispatch(setShowTab(true));
+        setTimeout(() => {
+            
+            const element = document.getElementById("chat");
+            element.scrollTop = element.scrollHeight;
+            
+        }, 200);
+      } 
+        
+      }
     useEffect(() => {
         dispatch(setAlert(0));
     }, [tabCheck])
@@ -60,14 +74,23 @@ function Footer() {
             <i className="fa fa-arrow-up" aria-hidden="true"></i>
 
         </div>}
-
-        <div onClick={() => handleShowChat()} className="chat-now">
+        <Draggable
+       
+       onMouseDown={eventHandler}
+       onStart={eventHandler}
+       onDrag={eventHandler}
+       onStop={eventHandler}
+      
+        > 
+        <div     onClick={handleShowChat}  className="chat-now">
             <img src={url} alt="" />
          
             {!showChat && totalAlert !== 0 ?  <div className="chat-total__notify">
                 {totalAlert}
-            </div> : ''}
+</div> : ''}
         </div>
+      </Draggable>
+        
         <div className="app-header__about container-fluid">
             <div className="container">
                 <div className="row">
