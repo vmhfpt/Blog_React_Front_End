@@ -1285,3 +1285,9 @@ a>.app-block-center__content-category-tag-list-item:hover {
    color: #3b5999;
    font-size: 33px;
 }
+.app-login__socialite iframe {
+    width : 100% !important;
+}
+.app-sign-out__icon {
+  cursor: pointer;
+}

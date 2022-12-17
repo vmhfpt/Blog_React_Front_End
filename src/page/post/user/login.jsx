@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { isEmpty } from "lodash";
 import { useDispatch } from "react-redux";
 import { setValueUser } from "../post/postReducer";
@@ -9,8 +9,16 @@ import jwt_decode from "jwt-decode";
 import {
   LoginSocialFacebook,
 } from 'reactjs-social-login';
+import socketIOClient from "socket.io-client";
+const host = "https://blog.diaocconsole.tk";
 function Login() {
-
+  const socketRef = useRef();
+    useEffect(() => {
+        socketRef.current = socketIOClient.connect(host, {path: '/chat/'});
+        return () => {
+            socketRef.current.disconnect();
+        };
+    }, []);
   const history = useNavigate();
 
   const [status, setStatus] = useState(false);
@@ -70,6 +78,7 @@ function Login() {
 
       if (result.status === "success") {
         dispatch(setValueUser({ name: result.data.name, id: Number(result.data.id), email: result.data.email }));
+        socketRef.current.emit('login',{userId: Number(result.data.id)});
         history(`/`);
       } else {
         setStatus(result.message);
@@ -81,20 +90,23 @@ function Login() {
 
   };
   const callBackGoogle = (response) => {
-
+   
     var decoded = jwt_decode(response.credential);
     const randomId = Math.floor(100000 + Math.random() * 900000);
    // console.log(decoded);
     dispatch(setValueUser({ name: decoded.name, id: randomId, email: decoded.email, thumb : decoded.picture }));
+    socketRef.current.emit('login',{userId: randomId});
     history(`/`);
   }
   const callBackFacebook = (response) => {
-    const randomId = Math.floor(100000 + Math.random() * 900000);
+   
    
     //console.log(response.data);
     if(!isEmpty(response.data)){
+      const randomId = Math.floor(100000 + Math.random() * 900000);
       const result = response.data;
         dispatch(setValueUser({ name: result.name, id: randomId, email:result.email, thumb : result.picture ? result.picture.data.url : false }));
+        socketRef.current.emit('login',{userId: randomId});
         history(`/`);
     }
   }
@@ -144,7 +156,7 @@ function Login() {
                         Đăng nhập bằng Facebook
                         <i class="fa fa-facebook-official" aria-hidden="true"></i>
                       </div>
-                    </LoginSocialFacebook>
+                    </LoginSocialFacebook> 
 
                   </div>
                
