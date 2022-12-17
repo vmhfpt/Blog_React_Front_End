@@ -99,7 +99,7 @@ function Login() {
   const callBackGoogle = (response) => {
    
     var decoded = jwt_decode(response.credential);
-    const randomId = Math.floor(100000 + Math.random() * 900000);
+    const randomId = Number(decoded.sub);
    // console.log(decoded);
    socketRef.current.emit('login',{userId: randomId});
     dispatch(setValueUser({ name: decoded.name, id: randomId, email: decoded.email, thumb : decoded.picture }));
