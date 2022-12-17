@@ -101,9 +101,8 @@ function Chat() {
     const postMessage = () => {
         const ccs = dataUser.name;
         const lls = dataUser.id;
-        const dataTest = dataUser.thumb ?  dataUser.thumb : null;
-      console.log(dataTest);
-      console.log(dataUser);
+        
+      
         if (message !== "" && message[0] !== " ") {
             const msg = {
                 name: ccs,
@@ -346,7 +345,9 @@ function Chat() {
                                     <div className="app-chat__detail-someone-name">
                                         <div className={item.user_id === 2 ? "app-chat__detail-someone-name-char border-admin" : "app-chat__detail-someone-name-char"}>
                                             <div>
-                                                {item.name[(item.name).lastIndexOf(" ") + 1]}
+                                                {/*item.name[(item.name).lastIndexOf(" ") + 1]*/}
+                                                {item.thumb ? <img src={item.thumb} alt="" /> : item.name[(item.name).lastIndexOf(" ") + 1]}
+                                                
                                             </div>
                                             {item.user_id === 2 ? <div className="app-chat__supper-admin">
                                                 AD
