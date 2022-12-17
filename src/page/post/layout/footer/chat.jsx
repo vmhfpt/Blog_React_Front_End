@@ -51,6 +51,7 @@ function Chat() {
         socketRef.current.on("sendDataServer", (item) => {
           
             const data = {
+                thumb : item.thumb,
                 name: item.name,
                 content: item.content,
                 user_id: item.id,
@@ -100,11 +101,15 @@ function Chat() {
     const postMessage = () => {
         const ccs = dataUser.name;
         const lls = dataUser.id;
+        const dataTest = dataUser.thumb ?  dataUser.thumb : null;
+      console.log(dataTest);
+      console.log(dataUser);
         if (message !== "" && message[0] !== " ") {
             const msg = {
                 name: ccs,
                 content: message,
                 id: Number(lls),
+                thumb :  dataUser.thumb ?  dataUser.thumb : null
             };
             setMessage("");
             socketRef.current.emit("sendDataClient", msg);
