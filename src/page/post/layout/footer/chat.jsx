@@ -83,7 +83,7 @@ function Chat() {
 
 
         });
-
+        
         return () => {
             socketRef.current.disconnect();
         };
@@ -162,7 +162,11 @@ function Chat() {
     }
     
     useEffect(() => {
-      
+        if(isEmpty(dataUser)){
+            /* global google */
+            google.accounts.id.prompt();
+        }
+        
         if (!isEmpty(dataUser)) {
             var myInterval =  setInterval(() => {
                 const select = document.getElementsByClassName("time-current");
@@ -263,6 +267,9 @@ function Chat() {
                 setErrorEmail("* Bắt buộc");
                 setErrorName("* Bắt buộc");
                 setErrorNumber("* Bắt buộc");
+                setName('');
+                setEmail('');
+                setNumber('');
                 dispatch(setValueUser({
                     name: name,
                     email: email,
