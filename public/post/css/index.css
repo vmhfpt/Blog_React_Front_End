@@ -1028,6 +1028,11 @@ a>.app-block-center__content-category-tag-list-item:hover {
     align-items: center;
     justify-content: center;
 }
+.app-chat__tab-image-name img{
+    width : 36px;
+  border-radius: 100%;
+  height : 36px;
+}
 .app-chat__tab-name {
     display: flex;
     flex-direction: column;

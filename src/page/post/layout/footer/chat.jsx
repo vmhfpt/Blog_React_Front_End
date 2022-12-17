@@ -1,4 +1,5 @@
 import { isEmpty } from "lodash";
+import { Link } from "react-router-dom";
 import { getDataUser } from "../../post/selectPost";
 import iconTyping from "./icon/typing.gif";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,15 +13,15 @@ import { setAlert } from "./chatReducer";
 
 import { setShowTab } from "./chatReducer";
 import { getDataShowTab } from "./selectChat";
-import { setIsOnline } from "./chatReducer";
+//import { setIsOnline } from "./chatReducer";
 const host = "https://blog.diaocconsole.tk";
 function Chat() {
     var temp = useRef(1);
     const tabCheck = useSelector(getDataShowTab);
 
-
+    const [isOnline, setIsOnline ] = useState({});
     const [typing, setTyping] = useState(false);
-    const isOnline = useSelector(getIsOnline);
+  //  const isOnline = useSelector(getIsOnline);
     const [message, setMessage] = useState("");
 
     const socketRef = useRef();
@@ -63,8 +64,8 @@ function Chat() {
 
         });
         socketRef.current.on("sendDataServerOnline", (item) => {
-            dispatch(setIsOnline(item.users));
-            //setIsOnline(item.users);
+            //dispatch(setIsOnline(item.users));
+            setIsOnline(item.users);
 
         });
         socketRef.current.on("sendDataServerTyping", (item) => {
@@ -278,9 +279,10 @@ function Chat() {
                 {!isEmpty(dataUser) && <>
                     <div className="app-chat__tab-image ">
                         <div className="app-chat__tab-image-name">
-                            <div>
+                         
+                            {dataUser.thumb ? <img src={dataUser.thumb} alt="" /> : <div>
                                 {dataUser.name[(dataUser.name).lastIndexOf(" ") + 1]}
-                            </div>
+                            </div>}
                             <div className="app-chat__tab-image-point">
 
                             </div>
@@ -434,7 +436,16 @@ function Chat() {
                         </div>
 
                     </div>
-                    <button onClick={() => handleSubmit()} type="button" className="app-chat__tab-button-register">Đăng ký</button>
+                    <div>
+                        <div className="row">
+                            <div className="col-sm-6">
+                            <button onClick={() => handleSubmit()} type="button" className="app-chat__tab-button-register">Đăng ký</button>
+                            </div>
+                            <div className="col-sm-6">
+                             <Link to="/user/login"><button onClick={() => dispatch(setShowTab(false))} type="button" className="app-chat__tab-button-register">Đăng nhập nhanh</button></Link>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>}
 

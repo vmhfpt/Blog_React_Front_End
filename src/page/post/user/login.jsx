@@ -11,18 +11,18 @@ import {
 } from 'reactjs-social-login';
 import socketIOClient from "socket.io-client";
 
-import { setIsOnline } from "../layout/footer/chatReducer";
+//import { setIsOnline } from "../layout/footer/chatReducer";
 const host = "https://blog.diaocconsole.tk";
 function Login() {
   const dispatch = useDispatch();
   const socketRef = useRef();
     useEffect(() => {
         socketRef.current = socketIOClient.connect(host, {path: '/chat/'});
-        socketRef.current.on("sendDataServerOnline", (item) => {
+       /** socketRef.current.on("sendDataServerOnline", (item) => {
           dispatch(setIsOnline(item.users));
         //  setIsOnline(item.users);
 
-      });
+      }); */
        
     }, []);
   const history = useNavigate();

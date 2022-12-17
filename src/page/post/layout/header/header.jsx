@@ -102,6 +102,7 @@ function Header() {
   }
   const logOut = () => {
     dispatch(setValueUser({}));
+    closeNav();
   }
   return (
     <>
