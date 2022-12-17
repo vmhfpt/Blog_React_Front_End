@@ -152,13 +152,13 @@ function Login() {
                   {status && <div className="popup-login">
                     <span>{status}</span>
                   </div>}
-   {/** appId="1181121432801275" */}
+   {/** appId="1798453420324673"*/}
                   <div className="app-login__socialite">
                     <div className="app-login__socialite-title"><span>Hoặc</span></div>
                     <div id="btn"></div>
                     <LoginSocialFacebook
-                   
-                      appId="1798453420324673"
+                      appId="1181121432801275"
+                      
                       onResolve={callBackFacebook}
 
                     >
