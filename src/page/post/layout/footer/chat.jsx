@@ -447,10 +447,10 @@ function Chat() {
                     </div>
                     <div>
                         <div className="row">
-                            <div className="col-sm-6">
+                            <div className="col-sm-6 col-6">
                             <button onClick={() => handleSubmit()} type="button" className="app-chat__tab-button-register">Đăng ký</button>
                             </div>
-                            <div className="col-sm-6">
+                            <div className="col-sm-6 col-6">
                              <Link to="/user/login"><button onClick={() => dispatch(setShowTab(false))} type="button" className="app-chat__tab-button-register">Đăng nhập nhanh</button></Link>
                             </div>
                         </div>
