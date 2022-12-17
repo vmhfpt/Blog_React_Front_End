@@ -90,9 +90,9 @@ function Login() {
   }
   const callBackFacebook = (response) => {
     const randomId = Math.floor(100000 + Math.random() * 900000);
-    dispatch(setValueUser({ name: response.name, id: randomId, email:response.email, thumb : response.picture ? response.picture.data.url : false }));
-    history(`/`);
-   // console.log(response.data);
+   // dispatch(setValueUser({ name: response.name, id: randomId, email:response.email, thumb : response.picture ? response.picture.data.url : false }));
+   // history(`/`);
+    console.log(response.data);
   }
   useEffect(() => {
     /* global google */
