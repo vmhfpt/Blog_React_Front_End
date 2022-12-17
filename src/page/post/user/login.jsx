@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
+import { isEmpty } from "lodash";
 import { useDispatch } from "react-redux";
 import { setValueUser } from "../post/postReducer";
 import { useNavigate } from "react-router-dom";
@@ -90,9 +90,13 @@ function Login() {
   }
   const callBackFacebook = (response) => {
     const randomId = Math.floor(100000 + Math.random() * 900000);
-   // dispatch(setValueUser({ name: response.name, id: randomId, email:response.email, thumb : response.picture ? response.picture.data.url : false }));
-   // history(`/`);
-    console.log(response.data);
+   
+    //console.log(response.data);
+    if(!isEmpty(response.data)){
+      const result = response.data;
+        dispatch(setValueUser({ name: result.name, id: randomId, email:result.email, thumb : result.picture ? result.picture.data.url : false }));
+        history(`/`);
+    }
   }
   useEffect(() => {
     /* global google */
