@@ -1258,3 +1258,30 @@ a>.app-block-center__content-category-tag-list-item:hover {
     cursor: pointer;
     background: #3773ed;
 }
+.app-login__socialite {
+    margin : 10px 0px;
+}
+
+.app-login__socialite-title {
+    margin : 10px;
+    color : #333;
+    text-align: center;
+}
+.app-login__socialite-facebook {
+    position: relative;
+    cursor: pointer;
+    margin : 10px 0px;
+    border : 1px solid #d4d4d4;
+    border-radius: 4px;
+    color : #333;
+    padding : 7px 0px;
+    text-align: center;
+    font-size: 14.5px;
+}
+.app-login__socialite-facebook i {
+    position: absolute;
+    top : 2px;
+    left : 3px;
+   color: #3b5999;
+   font-size: 33px;
+}

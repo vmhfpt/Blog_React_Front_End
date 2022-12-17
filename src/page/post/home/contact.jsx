@@ -1,4 +1,4 @@
-/*import {Link} from "react-router-dom" ;
+import {Link} from "react-router-dom" ;
 function Contact(){
   return ( <main>
       
@@ -49,56 +49,9 @@ function Contact(){
     </main>); 
 
 }
-export default Contact;*/
-
-
-
-import { useEffect } from "react";
-import jwt_decode from "jwt-decode";
-import {
-    LoginSocialFacebook,
-    
-  } from 'reactjs-social-login';
-function Contact() {
- const callBackGoogle = (response) => {
-  
-  var decoded = jwt_decode(response.credential);
- 
-console.log(decoded);
- }
- const callBackFacebook = (response) => {
-   console.log(response.data);
- }
- useEffect(() => {
-   /* global google */
-   google.accounts.id.initialize({
-    client_id : "357706866429-f2vs8kjhfpgdtrtuibmj6nncbq75h14e.apps.googleusercontent.com",
-    callback : callBackGoogle
-   });
-   google.accounts.id.renderButton(
-     document.getElementById("btn"),
-     {theme : "outline", size : "large"}
-   );
-   
- }, []);
- if(3 === 4){
-  google.accounts.id.prompt();
- }
-  return ( <div>
-    <h1>cc</h1>
-    <h1>cc</h1>
-    <h1>cc</h1>
-     <div id="btn"></div>
-     <LoginSocialFacebook
-       appId="1181121432801275"
-       onResolve={callBackFacebook}
-       
-     >
-      <h1> Đăng nhập với facebook</h1>
-     </LoginSocialFacebook>
-  </div>
-  )
-}
 export default Contact;
+
+
+
 
 /* */

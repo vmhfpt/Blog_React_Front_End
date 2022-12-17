@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { setValueUser } from "../post/postReducer";
 import { useNavigate } from "react-router-dom";
 import PostService from "../../../service/post.service";
+import jwt_decode from "jwt-decode";
+import {
+  LoginSocialFacebook,
+} from 'reactjs-social-login';
 function Login() {
+
   const history = useNavigate();
-  
+
   const [status, setStatus] = useState(false);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -40,10 +45,10 @@ function Login() {
     }
     setPassword(value);
   };
-  
+
   const handleSubmit = async () => {
-    
-    if(email === "" || password === ""){
+
+    if (email === "" || password === "") {
       if (email === "") {
         setError((prev) => {
           return { ...prev, email: "* Email không được để trống" };
@@ -59,53 +64,94 @@ function Login() {
 
 
     if (error.email === "" && error.password === "") {
-       
-         
-         const result = await PostService.login({email, password});
-        
-         if(result.status === "success") {
-          dispatch(setValueUser({name : result.data.name, id : Number(result.data.id), email : result.data.email}));
-          history(`/`);
-         }else {
-          setStatus(result.message);
-         }
-        
-   
-        
+
+
+      const result = await PostService.login({ email, password });
+
+      if (result.status === "success") {
+        dispatch(setValueUser({ name: result.data.name, id: Number(result.data.id), email: result.data.email }));
+        history(`/`);
+      } else {
+        setStatus(result.message);
+      }
+
+
+
     }
-    
-  }; 
- 
+
+  };
+  const callBackGoogle = (response) => {
+
+    var decoded = jwt_decode(response.credential);
+    const randomId = Math.floor(100000 + Math.random() * 900000);
+   // console.log(decoded);
+    dispatch(setValueUser({ name: decoded.name, id: randomId, email: decoded.email, thumb : decoded.picture }));
+    history(`/`);
+  }
+  const callBackFacebook = (response) => {
+    const randomId = Math.floor(100000 + Math.random() * 900000);
+    dispatch(setValueUser({ name: response.name, id: randomId, email:response.email, thumb : response.picture ? response.picture.data.url : false }));
+    history(`/`);
+   // console.log(response.data);
+  }
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "357706866429-f2vs8kjhfpgdtrtuibmj6nncbq75h14e.apps.googleusercontent.com",
+      callback: callBackGoogle
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("btn"),
+      { theme: "outline", size: "large" }
+    );
+
+  }, []);
   return (
     <section className="container-fluid app-contact">
-    <div className="container">
-   
-           <div className="form-container__app">
-           <div className="form-container__app-content">
-               <div className="app-contact__right">
-                   <div className="app-contact__form-title">
-                       <span>Đăng nhập</span>
-                   </div>
-                   <div className="app-contact__form-content">
-                       <form>
-                           
-                           <input value={email} onChange={(e) =>  handleEmail(e.target.value)}type="email" placeholder="Email của bạn" />
-                           <span className="error-form"> {error.email}</span>
-                           <input value={password} onChange={(e) => handlePassword(e.target.value)} type="password" placeholder="Mật khẩu" />
-                           <span className="error-form"> {error.password}</span>
-                           <button onClick={() => handleSubmit()} type="button">Đăng nhập</button>
-                           {status && <div className="popup-login">
-                              <span>{status}</span>
-                           </div>}
-                           
-                       </form>
-                   </div>
-               </div>
-           </div>
-           </div>
+      <div className="container">
 
-    </div>
-  </section>
+        <div className="form-container__app">
+          <div className="form-container__app-content">
+            <div className="app-contact__right">
+              <div className="app-contact__form-title">
+                <span>Đăng nhập</span>
+              </div>
+              <div className="app-contact__form-content">
+                <form>
+
+                  <input value={email} onChange={(e) => handleEmail(e.target.value)} type="email" placeholder="Email của bạn" />
+                  <span className="error-form"> {error.email}</span>
+                  <input value={password} onChange={(e) => handlePassword(e.target.value)} type="password" placeholder="Mật khẩu" />
+                  <span className="error-form"> {error.password}</span>
+                  <button onClick={() => handleSubmit()} type="button">Đăng nhập</button>
+                  {status && <div className="popup-login">
+                    <span>{status}</span>
+                  </div>}
+
+                  <div className="app-login__socialite">
+                    <div className="app-login__socialite-title"><span>Hoặc</span></div>
+                    <div id="btn"></div>
+                    <LoginSocialFacebook
+                      appId="1181121432801275"
+                      onResolve={callBackFacebook}
+
+                    >
+                      <div className="app-login__socialite-facebook">
+                        Đăng nhập bằng Facebook
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                      </div>
+                    </LoginSocialFacebook>
+
+                  </div>
+               
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }
 export default Login;
