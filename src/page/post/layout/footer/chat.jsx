@@ -254,19 +254,22 @@ function Chat() {
 
     const handleSubmit = () => {
 
-        if ((errorEmail === '' && errorName === '' && errorNumber === '')) {
+        if ((errorEmail === '' && errorName === '' && errorNumber === '' )) {
 
 
             if (isEmpty(dataUser)) {
                 const randomId = Math.floor(100000 + Math.random() * 900000);
                 socketRef.current.emit('login', { userId: randomId });
+                setErrorEmail("* Bắt buộc");
+                setErrorName("* Bắt buộc");
+                setErrorNumber("* Bắt buộc");
                 dispatch(setValueUser({
                     name: name,
                     email: email,
                     number: number,
                     id: randomId
                 }));
-
+               
                 scrollToBottom("chat");
 
             }
