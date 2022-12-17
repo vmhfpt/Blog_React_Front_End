@@ -134,7 +134,7 @@ function PostComment({slug}){
                     name : dataUser.name,
                     email : dataUser.email,
                     content : content,
-                    number : dataUser.number,
+                    number : dataUser.number ? dataUser.number : '0359932904',
                     parent_id : parent_id,
                     id : slug
                 }
