@@ -5,12 +5,17 @@ import ChatService from "../../../../service/chat.service";
 const initialState = {
     messengers : [],
     totalAlert : 0,
-    showTab : false
+    showTab : false,
+    isOnline : {}
 };
 export const ChatSlice = createSlice({
     name : 'chatReducer',
     initialState,
     reducers : {
+        setIsOnline: (state, action) => {
+            state.isOnline = action.payload;
+            
+         },
         setChat: (state, action) => {
            // state.messengers = action.payload;
            state.messengers.push(action.payload);
@@ -43,6 +48,6 @@ export const getList = createAsyncThunk('chat/list', async () => {
      return response;
 });
 
-export const {  setChat, setAlert, setShowTab} = ChatSlice.actions;
+export const {  setChat, setAlert, setShowTab, setIsOnline} = ChatSlice.actions;
   
 export default ChatSlice.reducer;

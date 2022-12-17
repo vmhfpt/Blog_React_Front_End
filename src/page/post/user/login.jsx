@@ -10,19 +10,25 @@ import {
   LoginSocialFacebook,
 } from 'reactjs-social-login';
 import socketIOClient from "socket.io-client";
+
+import { setIsOnline } from "../layout/footer/chatReducer";
 const host = "https://blog.diaocconsole.tk";
 function Login() {
+  const dispatch = useDispatch();
   const socketRef = useRef();
     useEffect(() => {
         socketRef.current = socketIOClient.connect(host, {path: '/chat/'});
-        return () => {
-            socketRef.current.disconnect();
-        };
+        socketRef.current.on("sendDataServerOnline", (item) => {
+          dispatch(setIsOnline(item.users));
+        //  setIsOnline(item.users);
+
+      });
+       
     }, []);
   const history = useNavigate();
 
   const [status, setStatus] = useState(false);
-  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ email: "", password: "" });
@@ -77,8 +83,9 @@ function Login() {
       const result = await PostService.login({ email, password });
 
       if (result.status === "success") {
-        dispatch(setValueUser({ name: result.data.name, id: Number(result.data.id), email: result.data.email }));
         socketRef.current.emit('login',{userId: Number(result.data.id)});
+        dispatch(setValueUser({ name: result.data.name, id: Number(result.data.id), email: result.data.email }));
+       
         history(`/`);
       } else {
         setStatus(result.message);
@@ -94,8 +101,9 @@ function Login() {
     var decoded = jwt_decode(response.credential);
     const randomId = Math.floor(100000 + Math.random() * 900000);
    // console.log(decoded);
+   socketRef.current.emit('login',{userId: randomId});
     dispatch(setValueUser({ name: decoded.name, id: randomId, email: decoded.email, thumb : decoded.picture }));
-    socketRef.current.emit('login',{userId: randomId});
+   
     history(`/`);
   }
   const callBackFacebook = (response) => {
@@ -105,8 +113,9 @@ function Login() {
     if(!isEmpty(response.data)){
       const randomId = Math.floor(100000 + Math.random() * 900000);
       const result = response.data;
-        dispatch(setValueUser({ name: result.name, id: randomId, email:result.email, thumb : result.picture ? result.picture.data.url : false }));
         socketRef.current.emit('login',{userId: randomId});
+        dispatch(setValueUser({ name: result.name, id: randomId, email:result.email, thumb : result.picture ? result.picture.data.url : false }));
+      
         history(`/`);
     }
   }
@@ -154,7 +163,7 @@ function Login() {
                     >
                       <div className="app-login__socialite-facebook">
                         Đăng nhập bằng Facebook
-                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        <i className="fa fa-facebook-official" aria-hidden="true"></i>
                       </div>
                     </LoginSocialFacebook> 
 

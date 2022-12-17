@@ -8,3 +8,6 @@ export const  getDataAlert = (state) => {
 export const  getDataShowTab = (state) => {
     return state.chat.showTab;
 }
+export const getIsOnline = (state) => {
+    return state.chat.isOnline;
+}

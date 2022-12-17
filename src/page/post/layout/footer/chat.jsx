@@ -6,12 +6,13 @@ import { useState, useEffect, useRef } from "react";
 import { setValueUser } from "../../post/postReducer";
 import { getList } from "./chatReducer";
 import socketIOClient from "socket.io-client";
-import { getDataChat } from "./selectChat";
+import { getDataChat, getIsOnline } from "./selectChat";
 import { setChat } from "./chatReducer";
 import { setAlert } from "./chatReducer";
 
 import { setShowTab } from "./chatReducer";
 import { getDataShowTab } from "./selectChat";
+import { setIsOnline } from "./chatReducer";
 const host = "https://blog.diaocconsole.tk";
 function Chat() {
     var temp = useRef(1);
@@ -19,7 +20,7 @@ function Chat() {
 
 
     const [typing, setTyping] = useState(false);
-    const [isOnline, setIsOnline] = useState({});
+    const isOnline = useSelector(getIsOnline);
     const [message, setMessage] = useState("");
 
     const socketRef = useRef();
@@ -62,8 +63,8 @@ function Chat() {
 
         });
         socketRef.current.on("sendDataServerOnline", (item) => {
-
-            setIsOnline(item.users);
+            dispatch(setIsOnline(item.users));
+            //setIsOnline(item.users);
 
         });
         socketRef.current.on("sendDataServerTyping", (item) => {
